@@ -15,9 +15,9 @@ public:
     Square();
     ~Square();
 
-    void setId(const int& id);
+    void setId(const unsigned int& id);
     void setName (const std::string& name);
-    void setEncounterChance(const int& encounterChance);
+    void setEncounterChance(const unsigned int& encounterChance);
     void setWasVisited(bool& wasVisited);
     void setPrev(Square<T>* prev);
     void setNext(Square<T>* next);

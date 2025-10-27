@@ -6,7 +6,7 @@
 
 // Setter Methods
 template <typename T>
-void Square<T>::setId(const int& id) {
+void Square<T>::setId(const unsigned int& id) {
     this->id = id;
 }
 
@@ -16,7 +16,7 @@ void Square<T>::setName(const std::string& name) {
 }
 
 template <typename T>
-void Square<T>::setEncounterChance(const int& encounterChance) {
+void Square<T>::setEncounterChance(const unsigned int& encounterChance) {
     this->encounterChance = encounterChance;
 }
 
