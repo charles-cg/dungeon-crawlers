@@ -30,4 +30,6 @@ public:
     Square<T>* getNext();
 };
 
+#include "Square.tpp"
+
 #endif
