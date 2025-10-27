@@ -34,4 +34,6 @@ public:
     int getReward();
 };
 
+#include "Monster.tpp"
+
 #endif
