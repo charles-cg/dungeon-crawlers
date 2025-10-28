@@ -2,37 +2,61 @@
 #include "Monster.h"
 
 // setter methods
-template <typename T>
-void setId(const unsigned int& id) {
+
+void Monster::setId(const unsigned int& id) {
     this->id = id;
 }
 
-template <typename T>
-void setName(const std::string& name) {
+
+void Monster::setName(const std::string& name) {
     this->name = name;
 }
 
-template <typename T>
-void setHp(const int& hp) {
+
+void Monster::setHp(const int& hp) {
     this->hp = hp;
 }
 
-template <typename T>
-void setAtk(const int& atk) {
+
+void Monster::setAtk(const int& atk) {
     this->atk = atk;
 }
 
-template <typename T>
-void setDef(const int& def) {
+
+void Monster::setDef(const int& def) {
     this->def = def;
 }
 
-template <typename T>
-void setSpawnChance(const int& spawnChance) {
+
+void Monster::setSpawnChance(const int& spawnChance) {
     this->spawnChance = spawnChance;
 }
 
-template <typename T>
-void setReward(const int& reward) {
+
+void Monster::setReward(const int& reward) {
     this->reward = reward;
+}
+
+// Getter methods
+
+unsigned int Monster::getId() {
+    return id;
+}
+std::string Monster::getName() {
+    return name;
+}
+int Monster::getHp() {
+    return hp;
+}
+int Monster::getAtk() {
+    return atk;
+}
+int Monster::getDef() {
+    return def;
+}
+int Monster::getSpawnChance() {
+    return spawnChance;
+}
+int Monster::getReward() {
+    return reward;
 }
