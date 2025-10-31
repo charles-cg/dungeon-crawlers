@@ -1,35 +1,39 @@
-#ifndef SQUARE_H
-#define SQUARE_H
+#ifndef ROOM_H
+#define ROOM_H
 #include <string>
+#include "Monster.h"
 
 template <typename T>
-class Square {
+class Room {
 private:
     unsigned int id;
     std::string name;
     unsigned int encounterChance; // chance ranges from 0 - 1
     bool wasVisited; // flag indicating if a square has been visited
-    Square<T>* prev;
-    Square<T>* next;
+    Room<T>* prev;
+    Room<T>* next;
+    Monster monster;
 public:
-    Square();
-    ~Square();
+    Room();
+    ~Room();
 
     void setId(const unsigned int& id);
     void setName (const std::string& name);
     void setEncounterChance(const unsigned int& encounterChance);
     void setWasVisited(bool& wasVisited);
-    void setPrev(Square<T>* prev);
-    void setNext(Square<T>* next);
+    void setPrev(Room<T>* prev);
+    void setNext(Room<T>* next);
+    void setMonster(Monster monster);
 
     unsigned int getId();
     std::string getName();
     unsigned int getEncounterChance();
     bool getWasVisited();
-    Square<T>* getPrev();
-    Square<T>* getNext();
+    Room<T>* getPrev();
+    Room<T>* getNext();
+    Monster getMonster();
 };
 
-#include "Square.tpp"
+#include "Room.tpp"
 
 #endif
