@@ -6,6 +6,8 @@ template <typename T>
 class Codex {
 private:
     BST<T> tree;
+public:
+    
 };
 
 #endif
