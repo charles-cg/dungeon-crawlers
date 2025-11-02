@@ -11,7 +11,7 @@ bool Codex::loadMonsterTXT(std::string filename) {
 	unsigned int size = 0;
 
 	if (!file.is_open()) {
-		std::cout << "File could not be opened" << filename << std::endl;
+		std::cout << "Could not open file: " << filename << std::endl;
 		return false;
 	}
 	if (!getline (file, line)) {
@@ -73,4 +73,31 @@ bool Codex::loadMonsterTXT(std::string filename) {
 	}
 	file.close();
 	return true;
+}
+
+int Codex::countLines(std::string filename) {
+    std::ifstream file(filename);
+    int lineCount = 0;
+    std::string line;
+
+    // check if the file has been opened
+    if (!file.is_open()) {
+        std::cerr << "There was an error opening the file: " << filename << std::endl;
+        return -1;
+    }
+
+    // skip header
+    if(!getline(file, line)) {
+        std::cerr << "File does not have a header" << std::endl;
+        file.close();
+        return -1;
+    }
+
+    // Count lines
+    while(getline(file, line)) {
+        lineCount++;    
+    }
+
+    file.close();
+    return(lineCount);
 }

@@ -11,6 +11,8 @@ private:
 
     bool loadMonsterTXT(std::string filename);
 
+    int countLines(std::string filename);
+
 public:
     Codex();
     ~Codex();
