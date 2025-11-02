@@ -16,7 +16,7 @@ void Room<T>::setName(const std::string& name) {
 }
 
 template <typename T>
-void Room<T>::setEncounterChance(const unsigned int& encounterChance) {
+void Room<T>::setEncounterChance(const float& encounterChance) {
     this->encounterChance = encounterChance;
 }
 
@@ -52,7 +52,7 @@ std::string Room<T>::getName() {
 }
 
 template <typename T>
-unsigned int Room<T>::getEncounterChance() {
+float Room<T>::getEncounterChance() {
     return encounterChance;
 }
 
