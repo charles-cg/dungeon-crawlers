@@ -1,6 +1,3 @@
-//Carlos Carreon A01665778
-//header file where nodes attributes and methods are declared
-//created on 09.10.25, last modified 20.10.25
 #ifndef NODE_H
 #define NODE_H
 
@@ -10,16 +7,18 @@ private:
     T data;
     Node<T>* left;
     Node<T>* right;
+    int height;
 public:
-    Node(const T& v): data(v), left(nullptr), right(nullptr){}
-    Node<T>* getLeft();
-    void setLeft(Node<T>* node);
-    Node<T>* getRight();
-    void setRight(Node<T>* node);
+    explicit Node(const T& v) : data(v), left(nullptr), right(nullptr), height(1) {}
     T getData();
-    void setData(T& v);
+    Node<T>* getLeft();
+    Node<T>* getRight();
+    int getHeight();
 
-
+    void setData(const T& value);
+    void setLeft(Node<T>* node);
+    void setRight(Node<T>* node);
+    void setHeight(const int& value);
 };
 
 #include "Node.tpp"
