@@ -1,11 +1,13 @@
 #ifndef CODEX_H
 #define CODEX_H
-#include "BST.h"
+#include "AVL.h"
+#include "Monster.h"
 
-template <typename T>
+
 class Codex {
 private:
-    BST<T> tree;
+    int totalMonsters;
+    AVL<Monster> codexTree;
 
     bool loadMonsterTXT(std::string filename);
 
