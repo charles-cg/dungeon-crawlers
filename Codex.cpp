@@ -30,7 +30,7 @@ bool Codex::loadMonsterTXT(std::string filename) {
 				errors++;
 			switch (field){
 				case 0:
-					newMonster.setId(stoi(cell));
+					newMonster.setId(cell);
 					break;
 				case 1:
 					newMonster.setName(cell);
@@ -45,10 +45,10 @@ bool Codex::loadMonsterTXT(std::string filename) {
                     newMonster.setDef(stoi(cell));
                     break;
                 case 5:
-                    newMonster.setSpawnChance(stoi(cell));
+                    newMonster.setAccuracy(stof(cell));
                     break;
                 case 6:
-                    newMonster.setReward(stoi(cell));
+                    newMonster.setReward(stof(cell));
                     break;
 				default:
 					errors++;
@@ -56,7 +56,7 @@ bool Codex::loadMonsterTXT(std::string filename) {
 				}
 			field++;
 			}
-		if (errors || field != MONSTER_NUMBER_STATS){
+		if (errors || field != MONSTER_NUMBER_ATTRIBUTES){
 			std::cout << "Error on line: " << line << std::endl;
 			file.close();
 			return false;
