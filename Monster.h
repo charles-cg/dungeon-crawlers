@@ -34,6 +34,19 @@ public:
     int getDef();
     float getAccuracy();
     float getReward();
+
+    //operator overloading in order to order monsters based on ID on the binary tree of the codex
+    bool operator<(const Monster& other) const {
+        if (id != other.id) {
+            return id < other.id;
+        }
+    }
+
+    bool operator>(const Monster& other) const {
+        if (id != other.id) {
+            return id > other.id;
+        }
+    }
 };
 
 #endif
