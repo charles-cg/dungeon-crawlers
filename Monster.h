@@ -2,38 +2,38 @@
 #define MONSTER_H
 #include <string>
 
-#define MONSTER_NUMBER_STATS 7
+#define MONSTER_NUMBER_ATTRIBUTES 7
 
 class Monster {
 private:
-    unsigned int id;
+    std::string id;
     std::string name;
 
     int hp;
     int atk;
     int def;
 
-    int spawnChance;
-    int reward;
+    float accuracy;
+    float reward;
 public:
     Monster();
     ~Monster();
 
-    void setId(const unsigned int& id);
+    void setId(const std::string& id);
     void setName(const std::string& name);
     void setHp(const int& hp);
     void setAtk(const int& atk);
     void setDef(const int& def);
-    void setSpawnChance(const int& spawnChance);
-    void setReward(const int& reward);
+    void setAccuracy(const float& accuracy);
+    void setReward(const float& reward);
 
-    unsigned int getId();
+    std::string getId();
     std::string getName();
     int getHp();
     int getAtk();
     int getDef();
-    int getSpawnChance();
-    int getReward();
+    float getAccuracy();
+    float getReward();
 };
 
 #endif

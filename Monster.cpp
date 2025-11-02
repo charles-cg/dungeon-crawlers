@@ -3,7 +3,7 @@
 
 // setter methods
 
-void Monster::setId(const unsigned int& id) {
+void Monster::setId(const std::string& id) {
     this->id = id;
 }
 
@@ -28,18 +28,18 @@ void Monster::setDef(const int& def) {
 }
 
 
-void Monster::setSpawnChance(const int& spawnChance) {
-    this->spawnChance = spawnChance;
+void Monster::setAccuracy(const float& accuracy) {
+    this->accuracy = accuracy;
 }
 
 
-void Monster::setReward(const int& reward) {
+void Monster::setReward(const float& reward) {
     this->reward = reward;
 }
 
 // Getter methods
 
-unsigned int Monster::getId() {
+std::string Monster::getId() {
     return id;
 }
 std::string Monster::getName() {
@@ -54,9 +54,9 @@ int Monster::getAtk() {
 int Monster::getDef() {
     return def;
 }
-int Monster::getSpawnChance() {
-    return spawnChance;
+float Monster::getAccuracy() {
+    return accuracy;
 }
-int Monster::getReward() {
+float Monster::getReward() {
     return reward;
 }
