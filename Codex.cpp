@@ -104,4 +104,16 @@ int Codex::countLines(std::string filename) {
 
 bool Codex::loadMonsterData() {
     totalMonsters = countLines(MONSTERS_TXT);
+
+    if (totalMonsters == -1) {
+        std::cerr << "Unable to load data set from" << MONSTERS_TXT << std::endl;
+        return false;
+    }
+
+    std::cout << "The file \"" << MONSTERS_TXT << "\" has: " << totalMonsters << " monsters\n";
+
+    if (!loadMonsterTXT(MONSTERS_TXT)) {
+        std::cerr << "Error loading data set from " << MONSTERS_TXT << std::endl;
+        return false;
+    }
 }
