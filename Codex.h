@@ -3,6 +3,8 @@
 #include "AVL.h"
 #include "Monster.h"
 
+#define MONSTERS_TXT "monsters.txt"
+
 
 class Codex {
 private:

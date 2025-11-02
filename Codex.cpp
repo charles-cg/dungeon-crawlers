@@ -101,3 +101,7 @@ int Codex::countLines(std::string filename) {
     file.close();
     return(lineCount);
 }
+
+bool Codex::loadMonsterData() {
+    totalMonsters = countLines(MONSTERS_TXT);
+}
