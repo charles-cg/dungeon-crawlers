@@ -2,6 +2,8 @@
 #define MONSTER_H
 #include <string>
 
+#define MONSTER_NUMBER_STATS 7
+
 class Monster {
 private:
     unsigned int id;
