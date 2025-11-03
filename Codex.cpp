@@ -1,8 +1,11 @@
-#pragma once
 #include <iostream>
 #include "Codex.h"
 #include <fstream>
 #include <sstream>
+
+Codex::~Codex() {
+    // No manual cleanup needed - members will be destroyed automatically
+}
 
 
 bool Codex::loadMonsterTXT(std::string filename) {
@@ -116,4 +119,5 @@ bool Codex::loadMonsterData() {
         std::cerr << "Error loading data set from " << MONSTERS_TXT << std::endl;
         return false;
     }
+    return true;
 }

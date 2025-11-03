@@ -2,6 +2,7 @@
 #define CODEX_H
 #include "AVL.h"
 #include "Monster.h"
+#pragma once
 
 #define MONSTERS_TXT "monsters.txt"
 
@@ -16,7 +17,7 @@ private:
     int countLines(std::string filename);
 
 public:
-    Codex();
+    Codex(): totalMonsters(0){}
     ~Codex();
 
     bool loadMonsterData();
