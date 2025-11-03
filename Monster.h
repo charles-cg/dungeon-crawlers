@@ -1,7 +1,7 @@
 #ifndef MONSTER_H
 #define MONSTER_H
 #include <string>
-#pragma once
+
 
 #define MONSTER_NUMBER_ATTRIBUTES 7
 

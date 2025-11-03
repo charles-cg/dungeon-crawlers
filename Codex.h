@@ -2,7 +2,6 @@
 #define CODEX_H
 #include "AVL.h"
 #include "Monster.h"
-#pragma once
 
 #define MONSTERS_TXT "monsters.txt"
 
