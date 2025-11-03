@@ -1,6 +1,7 @@
 #ifndef MONSTER_H
 #define MONSTER_H
 #include <string>
+#pragma once
 
 #define MONSTER_NUMBER_ATTRIBUTES 7
 
@@ -36,16 +37,17 @@ public:
     float getReward();
 
     //operator overloading in order to order monsters based on ID on the binary tree of the codex
-    bool operator<(const Monster& other) const {
-        if (id != other.id) {
-            return id < other.id;
-        }
+    bool operator<(const Monster& otherMonster) const {
+        return this->id < otherMonster.id;
     }
 
-    bool operator>(const Monster& other) const {
-        if (id != other.id) {
-            return id > other.id;
-        }
+    bool operator>(const Monster& otherMonster) const {
+        return this->id > otherMonster.id;
+    }
+
+    friend std::ostream& operator<<(std::ostream& os, const Monster& monster) {
+        os << monster.name;
+        return os;
     }
 };
 

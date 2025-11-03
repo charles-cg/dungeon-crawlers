@@ -1,5 +1,20 @@
-#pragma once
 #include "Monster.h"
+
+Monster::Monster() {
+    id = "";
+    name = "";
+
+    hp = 0;
+    atk = 0;
+    def = 0;
+
+    accuracy = 0;
+    reward = 0;
+}
+
+Monster::~Monster() {
+    
+}
 
 // setter methods
 
