@@ -32,6 +32,7 @@ public:
     bool addEdge(const T& from, const T& to, int weight = 1, bool directed = false);
 
     void printGraph() const;
+    T* getRoomsArray();
 };
 
 #include "Board.tpp"  

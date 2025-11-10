@@ -51,3 +51,8 @@ bool Board<T>::addEdge(const T& from, const T& to, int weight = 1, bool directed
     }
     return true;
 }
+
+template <typename T>
+T* Board<T>::getRoomsArray() {
+    return rooms;
+}
