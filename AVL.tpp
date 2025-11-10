@@ -270,3 +270,18 @@ void AVL<T>::clear(Node<T>* node) {
     delete node;
     node = nullptr;
 }
+
+template <typename T>
+Node<T>* AVL<T>::search(const T& value) {
+    Node<T>* current = root;
+    while (current != nullptr) {
+        if (value == current->getData()) {
+            return current;
+        } else if (value < current->getData()) {
+            current = current->getLeft();
+        } else {
+            current = current->getRight();
+        }
+    }
+    return nullptr;
+}

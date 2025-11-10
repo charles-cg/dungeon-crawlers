@@ -38,6 +38,8 @@ public:
     void remove(const T& value);
 
     void searchPath(const T& value);
+
+    Node<T>* search(const T& value);
 };
 
 #include "AVL.tpp"
