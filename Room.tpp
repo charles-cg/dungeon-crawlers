@@ -4,6 +4,14 @@
 #pragma once
 #include "Room.h"
 
+template <typename T>
+Room<T>::Room() : id(0), encounterChance(0), wasVisited(false), hero(nullptr) {}
+
+template <typename T>
+Room<T>::~Room() {
+    // Don't delete hero pointer - it's not owned by the room
+}
+
 // Setter Methods
 template <typename T>
 void Room<T>::setId(const unsigned int& id) {
@@ -26,19 +34,15 @@ void Room<T>::setWasVisited(bool& wasVisited) {
 }
 
 template <typename T>
-void Room<T>::setPrev(Room<T>* prev) {
-    this->prev = prev;
-}
-
-template <typename T>
-void Room<T>::setNext(Room<T>* next) {
-    this->next = next;
-}
-
-template <typename T>
 void Room<T>::setMonster(Monster monster) {
     this->monster = monster;
 }
+
+template <typename T>
+void Room<T>::setHero(Hero* hero) {
+    this->hero = hero;
+}
+
 
 // Getter methods
 template <typename T>
@@ -62,16 +66,11 @@ bool Room<T>::getWasVisited() {
 }
 
 template <typename T>
-Room<T>* Room<T>::getPrev() {
-    return prev;
-}
-
-template <typename T>
-Room<T>* Room<T>::getNext() {
-    return next;
-}
-
-template <typename T>
 Monster Room<T>::getMonster() {
     return monster;
+}
+
+template <typename T>
+Hero* Room<T>::getHero() {
+    return hero;
 }
