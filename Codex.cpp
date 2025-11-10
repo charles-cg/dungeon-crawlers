@@ -121,3 +121,7 @@ bool Codex::loadMonsterData() {
     }
     return true;
 }
+
+AVL<Monster> Codex::getCodexTree() {
+	return codexTree;
+}

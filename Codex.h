@@ -20,6 +20,7 @@ public:
     ~Codex();
 
     bool loadMonsterData();
+    AVL<Monster> getCodexTree(); 
 };
 
 #endif
