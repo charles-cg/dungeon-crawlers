@@ -1,0 +1,22 @@
+Index: Board.tpp
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>//\n// Created by MATEO HERNANDEZ on 03/11/25.\n//\n\n#pragma once\n#include \"Board.h\"\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Board.tpp b/Board.tpp
+--- a/Board.tpp	(revision 9d1ae1b9cfacd36d180db2214e723876bda8c0a7)
++++ b/Board.tpp	(date 1762745175891)
+@@ -4,3 +4,10 @@
+ 
+ #pragma once
+ #include "Board.h"
++
++template <typename T>
++bool Board<T>::addVertex(const T& v) {
++if (count >= n) {
++
++}
++}
+\ No newline at end of file
