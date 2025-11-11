@@ -1,0 +1,6 @@
+# Ignore CLion / JetBrains project files
+.idea/
+*.iml
+cmake-build-*/
+
+
