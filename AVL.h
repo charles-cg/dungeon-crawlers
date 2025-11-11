@@ -39,7 +39,7 @@ public:
 
     void searchPath(const T& value);
 
-    Node<T>* search(const T& value);
+    Node<T>* searchString(const std::string& value);
 };
 
 #include "AVL.tpp"

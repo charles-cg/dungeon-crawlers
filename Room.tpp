@@ -14,7 +14,7 @@ Room<T>::~Room() {
 
 // Setter Methods
 template <typename T>
-void Room<T>::setId(const unsigned int& id) {
+void Room<T>::setId(const std::string& id) {
     this->id = id;
 }
 
@@ -46,7 +46,7 @@ void Room<T>::setHero(Hero* hero) {
 
 // Getter methods
 template <typename T>
-unsigned int Room<T>::getId() {
+std::string Room<T>::getId() {
     return id;
 }
 

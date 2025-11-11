@@ -125,3 +125,9 @@ bool Codex::loadMonsterData() {
 AVL<Monster> Codex::getCodexTree() {
 	return codexTree;
 }
+
+Monster Codex::searchMonster(std::string id) {
+	Node<Monster> foundMonsterNode = *codexTree.searchString(id);
+	Monster foundMonster = foundMonsterNode.getData();
+	return foundMonster;
+}

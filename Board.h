@@ -4,7 +4,6 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-
 template <typename T>
 class Board {
 private:

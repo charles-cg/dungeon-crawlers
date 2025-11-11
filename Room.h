@@ -7,7 +7,7 @@
 template <typename T>
 class Room {
 private:
-    unsigned int id;
+    std::string id;
     std::string name;
     float encounterChance; // chance ranges from 0 - 1
     bool wasVisited; // flag indicating if a square has been visited
@@ -17,14 +17,14 @@ public:
     Room();
     ~Room();
 
-    void setId(const unsigned int& id);
+    void setId(const std::string& id);
     void setName (const std::string& name);
     void setEncounterChance(const float& encounterChance);
     void setWasVisited(bool& wasVisited);
     void setMonster(Monster monster);
     void setHero(Hero* hero);
 
-    unsigned int getId();
+    std::string getId();
     std::string getName();
     float getEncounterChance();
     bool getWasVisited();

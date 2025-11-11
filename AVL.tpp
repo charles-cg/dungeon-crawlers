@@ -272,7 +272,7 @@ void AVL<T>::clear(Node<T>* node) {
 }
 
 template <typename T>
-Node<T>* AVL<T>::search(const T& value) {
+Node<T>* AVL<T>::searchString(const std::string& value) {
     Node<T>* current = root;
     while (current != nullptr) {
         if (value == current->getData()) {

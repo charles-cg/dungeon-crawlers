@@ -20,7 +20,9 @@ public:
     ~Codex();
 
     bool loadMonsterData();
-    AVL<Monster> getCodexTree(); 
+    AVL<Monster> getCodexTree();
+
+    Monster searchMonster(std::string id);
 };
 
 #endif
