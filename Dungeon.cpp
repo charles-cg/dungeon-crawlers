@@ -1,5 +1,11 @@
-#pragma once
 #include "Dungeon.h"
+
+Dungeon::~Dungeon() {
+	if (roomArray != nullptr) {
+		delete[] roomArray;
+		roomArray = nullptr;
+	}
+}
 
 int Dungeon::countLines(std::string filename) {
     std::ifstream file(filename);
@@ -78,21 +84,41 @@ bool Dungeon::loadRoomsTXT(std::string filename) {
 				}
 			field++;
 			}
-		if (errors || field != PELICULA_ATTRIB_SIZE){
-			cout << "Error en la linea: " << line << endl;
+		if (errors || field != ROOM_NUMBER_ATTRIBUTES){
+			std::cout << "Error on line: " << line << std::endl;
 			file.close();
 			return false;
 		}
-		if(size < numeroPeliculas) {
-			videoArray[size] = newPeli;
+		if(size < totalRooms) {
+			roomArray[size] = newRoom;
 			size++;
 		}
 		else {
-			cout << "Error, el arreglo es muy pequeño" << endl;
+			std::cout << "Error, the array is too small" << std::endl;
 			file.close();
 			return false;
 		}
 	}
 	file.close();
 	return true;
+}
+
+bool Dungeon::loadRoomData() {
+    totalRooms = countLines(ROOMS_TXT);
+
+    if (totalRooms == -1) {
+        std::cerr << "Unable to load data set from" << ROOMS_TXT << std::endl;
+        return false;
+    }
+
+    std::cout << "The file \"" << ROOMS_TXT << "\" has: " << totalRooms << " rooms\n";
+
+    // Allocate the room array
+    roomArray = new Room<Monster>[totalRooms];
+
+    if (!loadRoomsTXT(ROOMS_TXT)) {
+        std::cerr << "Error loading data set from " << ROOMS_TXT << std::endl;
+        return false;
+    }
+    return true;
 }

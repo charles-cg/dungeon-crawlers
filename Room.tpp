@@ -5,11 +5,12 @@
 #include "Room.h"
 
 template <typename T>
-Room<T>::Room(int id, std::string name, float encounterChance, bool wasVisited) {
-this->id = id;
-this->name = name;
-this->encounterChance = encounterChance;
-this->wasVisited = wasVisited;
+Room<T>::Room() {
+    id = "";
+    name = "";
+    encounterChance = 0;
+    wasVisited = false;
+    hero = nullptr;
 }
 
 template <typename T>

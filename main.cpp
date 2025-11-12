@@ -1,10 +1,10 @@
-#include "Codex.h"
+#include "Dungeon.h"
 #include <iostream>
 
 int main() {
-    Codex codex;
+    Dungeon dungeon;
 
-    bool flag = codex.loadMonsterData();
+    bool flag = dungeon.loadRoomData();
 
     return 0;
 }

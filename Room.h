@@ -4,6 +4,8 @@
 #include "Monster.h"
 #include "Hero.h"
 
+#define ROOM_NUMBER_ATTRIBUTES 5
+
 template <typename T>
 class Room {
 private:

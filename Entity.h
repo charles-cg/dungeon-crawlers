@@ -3,7 +3,7 @@
 #include <string>
 
 class Entity {
-private:
+protected:
     std::string id;
     std::string name;
 
@@ -25,20 +25,6 @@ public:
     int getHp();
     int getAtk();
     int getDef();
-
-        //operator overloading in order to order monsters based on ID on the binary tree of the codex
-    bool operator<(const Entity& otherEntity) const {
-        return this->id < otherEntity.id;
-    }
-
-    bool operator>(const Entity& otherEntity) const {
-        return this->id > otherEntity.id;
-    }
-
-    friend std::ostream& operator<<(std::ostream& os, const Entity& entity) {
-        os << entity.name;
-        return os;
-    }
 };
 
 #endif

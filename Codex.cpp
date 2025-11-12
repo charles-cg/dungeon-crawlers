@@ -127,7 +127,17 @@ AVL<Monster> Codex::getCodexTree() {
 }
 
 Monster Codex::searchMonster(std::string id) {
-	Node<Monster> foundMonsterNode = *codexTree.searchString(id);
-	Monster foundMonster = foundMonsterNode.getData();
-	return foundMonster;
+	// Create a temporary Monster with the search ID
+	Monster searchMonster;
+	searchMonster.setId(id);
+	
+	// Search the tree for a monster with this ID
+	Node<Monster>* foundNode = codexTree.search(searchMonster);
+	
+	if (foundNode != nullptr) {
+		return foundNode->getData();
+	}
+	
+	// Return an empty monster if not found
+	return Monster();
 }

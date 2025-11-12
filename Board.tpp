@@ -7,7 +7,7 @@
 template <typename T>
 Board<T>::~Board() {
     for (int i = 0; i < n; i++) {
-        delete[] matrix[i]
+        delete[] matrix[i];
     }
 
     delete[] matrix;
@@ -39,7 +39,7 @@ bool Board<T>::addRoom(const T& value) {
 }
 
 template <typename T>
-bool Board<T>::addEdge(const T& from, const T& to, int weight = 1, bool directed = false) {
+bool Board<T>::addEdge(const T& from, const T& to, int weight, bool directed) {
     int idxFrom = indexOf(from);
     int idxTo = indexOf(to);
     if (idxFrom == -1 || idxTo == -1) {

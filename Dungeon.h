@@ -23,9 +23,16 @@ private:
 
     Room<Monster>* roomArray;
     unsigned int totalRooms;
-public:
+
+    bool loadRoomsTXT(std::string filename);
+
     int countLines(std::string filename);
-    bool Dungeon::loadRoomsTXT(std::string filename);
+public:
+    Dungeon() : board(100), hero(nullptr), roomArray(nullptr), totalRooms(0) {
+        monsterCodex.loadMonsterData();
+    }
+    ~Dungeon();
+    bool loadRoomData();
 };
 
 #endif
