@@ -1,0 +1,6 @@
+id,name,encounter chance,was visited,monster
+R1,start,1,0,M5
+R2,cockatrice nest,1,0,M3
+R3,banshees tomb,0.8,0,M2
+R4,temple,0.9,0,M1
+R5,dragons lair,1,0,M4
