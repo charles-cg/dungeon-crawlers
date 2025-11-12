@@ -4,6 +4,8 @@
 #ifndef BOARD_H
 #define BOARD_H
 
+#define ADD_PATH_NUMBER_ARGUMENTS 4
+
 template <typename T>
 class Board {
 private:

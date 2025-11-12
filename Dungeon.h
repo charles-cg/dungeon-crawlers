@@ -12,6 +12,7 @@
 #include <iostream>
 
 #define ROOMS_TXT "rooms.txt"
+#define PATHS_TXT "paths.txt"
 
 class Dungeon {
 private:
@@ -21,18 +22,26 @@ private:
 
     Codex monsterCodex;
 
-    Room<Monster>* roomArray;
     unsigned int totalRooms;
 
     bool loadRoomsTXT(std::string filename);
 
     int countLines(std::string filename);
+
+    unsigned int totalPaths;
+
+    bool addRoomPath(std::string& roomFromId, std::string& roomToId, int weight = 1, bool directed = false);
+
+    bool loadPathsTXT(std::string filename);
 public:
-    Dungeon() : board(100), hero(nullptr), roomArray(nullptr), totalRooms(0) {
+    Dungeon() : board(10), hero(nullptr), totalRooms(0) {
         monsterCodex.loadMonsterData();
     }
     ~Dungeon();
+
     bool loadRoomData();
+
+    bool loadPathData();
 };
 
 #endif
