@@ -29,7 +29,7 @@ void LinkedList<T>::print() const{
     if (empty()) {
         cout<< "Empty List!" <<endl;
     }else {
-        const Node<T>* current= head;
+        const ListNode<T>* current= head;
         cout<<"[";
         while (current) {
             cout << " " << current->getData() << " ->";
@@ -43,11 +43,11 @@ void LinkedList<T>::print() const{
 // Inserts a Node at the end of the list with a specified value for data.
 template<typename T>
 void LinkedList<T>::pushBack(const T &value) {
-    Node<T>* newNode = new Node<T>(value);
+    ListNode<T>* newNode = new ListNode<T>(value);
     if (!head) {
         head = newNode;
     }else {
-        Node<T>* current = head;
+        ListNode<T>* current = head;
         while (current->getNext()) {
             current = current->getNext();
         }
@@ -64,11 +64,11 @@ bool LinkedList<T>::insert(unsigned int index, const T &value) {
         pushBack(value);
         return true;
     }
-    Node<T>* current = head;
+    ListNode<T>* current = head;
     for (int i = 0;i < index - 1;i++) { // Loop until one before the desired index position
         current = current->getNext();
     }
-    Node<T>* newNode = new Node<T>(value);
+    ListNode<T>* newNode = new ListNode<T>(value);
     newNode->setNext(current->getNext()); // newNode points to the next node
     current->setNext(newNode); // current node now points to the newNode
     ++n; // add 1 to the size
@@ -79,7 +79,7 @@ bool LinkedList<T>::insert(unsigned int index, const T &value) {
 template <typename T>
 void LinkedList<T>::clear() {
     if (head) { // deletes only if there are nodes
-        Node<T>* current = head;
+        ListNode<T>* current = head;
         while (current != nullptr) {
             head = current->getNext(); 
             delete current; // deletes current and moves to the next one
@@ -96,7 +96,7 @@ void LinkedList<T>::clear() {
 // Inserts a node at the start.
 template <typename T>
 void LinkedList<T>::pushFront(const T& value) {
-    Node<T>* newNode = new Node<T>(value);
+    ListNode<T>* newNode = new ListNode<T>(value);
     if (!head) {
         head = newNode;
     } else {
@@ -109,7 +109,7 @@ void LinkedList<T>::pushFront(const T& value) {
 // Returns th value specified by the index
 template <typename T>
 T LinkedList<T>::elementAt(unsigned int index) {
-    Node<T>* current = head;
+    ListNode<T>* current = head;
     for (int i = 0; i < index; i++) { // Loops until the inputted index
         current = current->getNext();
     }
@@ -123,15 +123,15 @@ bool LinkedList<T>::remove(const T& value) {
         std::cout << "No elements to remove, list is empty" << std::endl;
         return false;
     } else if (head->getData() == value) { // handles edge case of the value being on the first node
-        Node<T>* temp = head;
+        ListNode<T>* temp = head;
         head = temp->getNext();
         delete temp;
         temp = nullptr;
         --n;
         return true;
     } else {
-        Node<T>* current = head->getNext();
-        Node<T>* previous = head;
+        ListNode<T>* current = head->getNext();
+        ListNode<T>* previous = head;
         while (current != nullptr) { // loop through all the nodes
             if (current->getData() == value) { 
                 previous->setNext(current->getNext()); // previous node now points to the next node
@@ -155,8 +155,8 @@ unsigned int LinkedList<T>::size() const{
 }
 
 template <typename T>
-Node<T>* LinkedList<T>::search(const T& value) const {
-    Node<T>* current = head;
+ListNode<T>* LinkedList<T>::search(const T& value) const {
+    ListNode<T>* current = head;
     while (current) {
         if (current->getData() == value) {
             return current;
@@ -167,11 +167,11 @@ Node<T>* LinkedList<T>::search(const T& value) const {
 }
 
 template <typename T>
-Node<T>* LinkedList<T>::getHead() {
+ListNode<T>* LinkedList<T>::getHead() {
     return head;
 }
 
 template <typename T>
-const Node<T>* LinkedList<T>::getHead() const {
+const ListNode<T>* LinkedList<T>::getHead() const {
     return head;
 }

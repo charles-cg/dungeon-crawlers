@@ -8,7 +8,7 @@ class Graph {
 private:
     LinkedList<Vertex<T>> vertices;
 
-    Node<Vertex<T>>* findVertexNode(const T& v);
+    ListNode<Vertex<T>>* findVertexNode(const T& v);
 
 public:
     Graph() = default;

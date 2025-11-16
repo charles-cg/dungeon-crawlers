@@ -38,6 +38,7 @@ public:
     Dungeon() : hero(nullptr), totalRooms(0) {
         monsterCodex.loadMonsterData();
     }
+    
     ~Dungeon();
 
     bool loadRoomData();

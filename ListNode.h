@@ -4,22 +4,22 @@
 #ifndef LISTNODE_H
 #define LISTNODE_H
 template <typename T>
-class Node {
+class ListNode {
 private:
     T data;
-    Node* next;
+    ListNode* next;
 public:
-    Node(const T& v);
+    ListNode(const T& v);
 
     const T& getData() const; // read only method for getting data
 
     T& getData(); //method for getting data that can be modified
 
-    Node* getNext() const; // read only method for getting next
+    ListNode* getNext() const; // read only method for getting next
 
-    void setNext(Node* node); // method for setting next
+    void setNext(ListNode* node); // method for setting next
 
 };
 
 #include "ListNode.tpp"
-#endif //NODE_H
+#endif

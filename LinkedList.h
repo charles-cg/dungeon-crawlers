@@ -8,7 +8,7 @@
 template <typename T>
 class LinkedList {
 private:
-    Node<T>* head; //pointer to first Node
+    ListNode<T>* head; //pointer to first Node
     unsigned int n; //num of elements (size)
 public:
     LinkedList();
@@ -26,10 +26,10 @@ public:
     bool insert(unsigned int index, const T& value);
     T elementAt(unsigned int index);
 
-    Node<T>* search(const T& value) const;
+    ListNode<T>* search(const T& value) const;
 
-    Node<T>* getHead(); // method for head that can be modified
-    const Node<T>* getHead() const; // read only method for head
+    ListNode<T>* getHead(); // method for head that can be modified
+    const ListNode<T>* getHead() const; // read only method for head
 };
 
 #include "LinkedList.tpp"

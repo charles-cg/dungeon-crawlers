@@ -87,7 +87,7 @@ bool Dungeon::loadRoomsTXT(std::string filename) {
 			return false;
 		}
 		if(size < totalRooms) {
-			board.addRoom(newRoom);
+			board.addVertex(newRoom);
 			size++;
 		}
 		else {

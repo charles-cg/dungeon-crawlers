@@ -4,8 +4,8 @@
 using namespace std;
 
 template <typename T>
-Node<Vertex<T>>* Graph<T>::findVertexNode(const T& v){
-    Node<Vertex<T>>* current = vertices.getHead();
+ListNode<Vertex<T>>* Graph<T>::findVertexNode(const T& v){
+    ListNode<Vertex<T>>* current = vertices.getHead();
     while (current) {
         if (current->getData().getData() == v) {
             return current;
@@ -27,8 +27,8 @@ bool Graph<T>::addVertex(const T& v) {
 
 template <typename T>
 bool Graph<T>::addEdge(const T& from,const T& to, const int& weight, const bool directed) {
-    Node<Vertex<T>>* originNode = findVertexNode(from);
-    Node<Vertex<T>>* toNode = findVertexNode(to);
+    ListNode<Vertex<T>>* originNode = findVertexNode(from);
+    ListNode<Vertex<T>>* toNode = findVertexNode(to);
     if (!originNode || !toNode) {
         return false;
     }
@@ -46,7 +46,7 @@ bool Graph<T>::addEdge(const T& from,const T& to, const int& weight, const bool 
 
 template <typename T>
 void Graph<T>::print() const {
-    const Node<Vertex<T>>* current = vertices.getHead();
+    const ListNode<Vertex<T>>* current = vertices.getHead();
     while (current) {
         cout << current->getData().getData() << ": ";
         current->getData().getAdj().print();

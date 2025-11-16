@@ -41,7 +41,7 @@ void Room<T>::setWasVisited(bool& wasVisited) {
 
 template <typename T>
 void Room<T>::setCreature(const T& creature) {
-    this->monster = creature;
+    this->creature = creature;
 }
 
 template <typename T>
