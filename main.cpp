@@ -7,5 +7,7 @@ int main() {
     bool flag = dungeon.loadRoomData();
     dungeon.loadPathData();
 
+    dungeon.printBoard();
+
     return 0;
 }

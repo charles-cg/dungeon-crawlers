@@ -246,13 +246,11 @@ void AVL<T>::searchPath(Node<T>* node, const T& value) {
 template <typename T>
 void AVL<T>::clear() {
     if (root == nullptr) {
-        std::cout << "Tree is empty!" << std::endl;
         return; // if the tree has no nodes, don't do anything
     }
 
     clear(root); // calls private clear method
     root = nullptr;
-    std::cout << "Tree has been cleared!" << std::endl;
 }
 
 template <typename T>

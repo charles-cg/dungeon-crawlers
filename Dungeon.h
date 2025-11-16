@@ -1,7 +1,6 @@
 #ifndef DUNGEON_H
 #define DUNGEON_H
 
-#include "Board.h"
 #include "Graph.h"
 #include "Monster.h"
 #include "Hero.h"
@@ -14,6 +13,8 @@
 
 #define ROOMS_TXT "rooms.txt"
 #define PATHS_TXT "paths.txt"
+
+#define ADD_PATH_NUMBER_ARGUMENTS 4
 
 class Dungeon {
 private:
@@ -38,12 +39,14 @@ public:
     Dungeon() : hero(nullptr), totalRooms(0) {
         monsterCodex.loadMonsterData();
     }
-    
+
     ~Dungeon();
 
     bool loadRoomData();
 
     bool loadPathData();
+
+    void printBoard() const;
 };
 
 #endif

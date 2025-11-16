@@ -208,3 +208,7 @@ bool Dungeon::loadPathData() {
     }
     return true;
 }
+
+void Dungeon::printBoard() const {
+	board.print();
+}

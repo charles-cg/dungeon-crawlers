@@ -44,6 +44,11 @@ public:
     bool operator==(const Room<T>& otherRoom) const {
         return this->id == otherRoom.id;
     }
+
+    friend std::ostream& operator<<(std::ostream& os, const Room<T>& otherRoom) {
+        os << otherRoom.id;
+        return os;
+    }
 };
 
 #include "Room.tpp"
