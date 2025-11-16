@@ -75,7 +75,7 @@ bool Dungeon::loadRoomsTXT(std::string filename) {
                 }
                 case 4: {
                     std::string monsterId = cell;
-					newRoom.setMonster(monsterCodex.searchMonster(monsterId));
+					newRoom.setCreature(monsterCodex.searchMonster(monsterId));
 					break;
                 }	                   
 				default:

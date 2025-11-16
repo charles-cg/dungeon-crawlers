@@ -2,6 +2,7 @@
 #define DUNGEON_H
 
 #include "Board.h"
+#include "Graph.h"
 #include "Monster.h"
 #include "Hero.h"
 #include "Room.h"
@@ -17,7 +18,7 @@ class Dungeon {
 private:
     Hero* hero;
 
-    Board<Room<Monster>> board;
+    Graph<Room<Monster>> board;
 
     Codex monsterCodex;
 
@@ -28,7 +29,7 @@ private:
 
     int countLines(std::string filename);
 public:
-    Dungeon() : board(100), hero(nullptr), roomArray(nullptr), totalRooms(0) {
+    Dungeon() : hero(nullptr), roomArray(nullptr), totalRooms(0) {
         monsterCodex.loadMonsterData();
     }
     ~Dungeon();
