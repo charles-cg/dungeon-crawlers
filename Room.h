@@ -32,6 +32,18 @@ public:
     bool getWasVisited();
     T getCreature();
     Hero* getHero();
+
+    bool operator<(const Room<T>& otherRoom) const {
+        return this->id < otherRoom.id;
+    }
+
+    bool operator>(const Room<T>& otherRoom) const {
+        return this->id > otherRoom.id;
+    }
+
+    bool operator==(const Room<T>& otherRoom) const {
+        return this->id == otherRoom.id;
+    }
 };
 
 #include "Room.tpp"
