@@ -7,20 +7,25 @@
 void CombatSystem::battleStatus() const {
 
 std::cout << "Battle Status" << std::endl;
-std::cout << "Hero: " << hero.getName() << " HP: " << hero.getHp() << std::endl;
-std::cout << "Enemy: " << enemy.getName() << " HP: " << enemy.getHp() << std::endl;
+std::cout << "Hero: " << hero.getName() << " Hit Points: " << hero.getHp() << " Defence: " << hero.getDef() << std::endl;
+std::cout << "Enemy: " << enemy.getName() << " Hit Points: " << enemy.getHp() << " Defence: " << enemy.getDef() << std::endl;
 std::cout << std::endl;
 
 }
 
 void CombatSystem::turn() {
 //Hero´s turn
-int heroDamage = hero.getAtk() - enemy.getDef();
-enemy.setHp(enemy.getHp() - heroDamage);
 battleStatus();
+int heroDamage = hero.getAtk() - enemy.getDef();
+
+if (enemy.getDef() >= hero.getAtk()) {
+std::cout << " You missed! " << enemy.getName() << "defence was stronger than your attack" << std::endl;
+}
+
+enemy.setHp(enemy.getHp() - heroDamage);
 
 std::cout << hero.getName() << " attacks! " << enemy.getName() << std::endl;
-std::cout " Damage dealt: " << heroDamage << std::endl;
+std::cout << " Damage dealt: " << heroDamage << std::endl;
 std::cout << std::endl;
 std::cout << "Curent battle status" << std::endl;
 battleStatus();

@@ -12,7 +12,7 @@ class CombatSystem {
 private:
 
 Hero& hero;
-Entity& enemy;
+Entity& enemy; // The enemy is the monster that appeared in the current room
 
 public:
 
