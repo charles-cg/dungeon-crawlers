@@ -3,6 +3,8 @@
 //
 
 #include "CombatSystem.h"
+#include <iostream>
+#include "Monster.h"
 
 void CombatSystem::battleStatus() const {
 
@@ -18,9 +20,9 @@ void CombatSystem::turn() {
 battleStatus();
 int heroDamage = hero.getAtk() - enemy.getDef();
 
-if (enemy.getDef() >= hero.getAtk()) {
+if (enemy.getDef() > hero.getAtk()) {
 std::cout << " You missed! " << enemy.getName() << "defence was stronger than your attack" << std::endl;
-}
+} else if (heroDamage <= enemy.getDef()) {
 
 enemy.setHp(enemy.getHp() - heroDamage);
 
@@ -28,6 +30,7 @@ std::cout << hero.getName() << " attacks! " << enemy.getName() << std::endl;
 std::cout << " Damage dealt: " << heroDamage << std::endl;
 std::cout << std::endl;
 std::cout << "Curent battle status" << std::endl;
+}
 battleStatus();
 
 //Enemy`s/Monster's turn
@@ -46,6 +49,12 @@ battleStatus();
 
 if(isBattleOver()) {
 std::cout << " The battle is over!" << std::endl;
+if (enemy.getHp() == 0) {
+std::cout << hero.getName() << " won the battle!" << std::endl;
+} else (hero.getHp() == 0) {
+std::cout << enemy.getName() << " won the battle!" << std::endl;
+std::cout << "Game Over" << std::endl;
+}
 battleStatus();
 
 }
