@@ -4,6 +4,11 @@
 using namespace std;
 
 template <typename T>
+Graph<T>::~Graph() {
+    
+}
+
+template <typename T>
 ListNode<Vertex<T>>* Graph<T>::findVertexNode(const T& v){
     ListNode<Vertex<T>>* current = vertices.getHead();
     while (current) {
@@ -48,9 +53,21 @@ template <typename T>
 void Graph<T>::print() const {
     const ListNode<Vertex<T>>* current = vertices.getHead();
     while (current) {
-        cout << current->getData().getData() << ": ";
+        cout << current->getData().getData() << "-> ";
         current->getData().getAdj().print();
         current = current->getNext();
         cout << endl;
     }
+}
+
+template <typename T>
+const ListNode<Vertex<T>>* Graph<T>::findVertexNode(const T& v) const {
+    const ListNode<Vertex<T>>* current = vertices.getHead();
+    while (current) {
+        if (current->getData().getData() == v) {
+            return current;
+        }
+        current = current->getNext();
+    }
+    return nullptr;
 }

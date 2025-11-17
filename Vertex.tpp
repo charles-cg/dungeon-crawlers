@@ -32,3 +32,8 @@ template <typename T>
 const LinkedList<Edge<T>>& Vertex<T>::getAdj() const {
     return adj;
 }
+
+template <typename T>
+T& Vertex<T>::getData() {
+    return data;
+}

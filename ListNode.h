@@ -11,6 +11,8 @@ private:
 public:
     ListNode(const T& v);
 
+    ~ListNode();
+
     const T& getData() const; // read only method for getting data
 
     T& getData(); //method for getting data that can be modified

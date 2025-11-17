@@ -20,7 +20,10 @@ public:
     }
 
     friend std::ostream& operator<<(std::ostream& os, const Edge<T>& edge) {
-        os << "(" << edge.destination << ", " << edge.weight << ")";
+        os << edge.destination;
+        if (edge.weight != 1) {
+            os << ", Keys needed: " << edge.weight;
+        }
         return os;
     }
 };

@@ -15,7 +15,7 @@ Room<T>::Room() {
 
 template <typename T>
 Room<T>::~Room() {
-    // Don't delete hero pointer - it's not owned by the room
+    
 }
 
 // Setter Methods
@@ -35,7 +35,7 @@ void Room<T>::setEncounterChance(const float& encounterChance) {
 }
 
 template <typename T>
-void Room<T>::setWasVisited(bool& wasVisited) {
+void Room<T>::setWasVisited(const bool& wasVisited) {
     this->wasVisited = wasVisited;
 }
 

@@ -5,6 +5,11 @@
 #include "ListNode.h"
 
 template <typename T>
+ListNode<T>::~ListNode() {
+    
+}
+
+template <typename T>
 ListNode<T>::ListNode(const T& v): data(v), next(nullptr){}
 
 template <typename T>

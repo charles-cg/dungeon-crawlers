@@ -17,12 +17,13 @@ private:
     Hero* hero;
 public:
     Room();
+    Room(const std::string& id) : id(id) {}
     ~Room();
 
     void setId(const std::string& id);
     void setName (const std::string& name);
     void setEncounterChance(const float& encounterChance);
-    void setWasVisited(bool& wasVisited);
+    void setWasVisited(const bool& wasVisited);
     void setCreature(const T& creature);
     void setHero(Hero* hero);
 
@@ -46,7 +47,7 @@ public:
     }
 
     friend std::ostream& operator<<(std::ostream& os, const Room<T>& otherRoom) {
-        os << otherRoom.id;
+        os << "Magic Identifier: " << otherRoom.id << ", Room name: " << otherRoom.name;
         return os;
     }
 };

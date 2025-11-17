@@ -1,7 +1,8 @@
 #include "Dungeon.h"
 
 Dungeon::~Dungeon() {
-
+	delete hero;
+	hero = nullptr;
 }
 
 int Dungeon::countLines(std::string filename) {
@@ -211,4 +212,31 @@ bool Dungeon::loadPathData() {
 
 void Dungeon::printBoard() const {
 	board.print();
+}
+
+void Dungeon::setStartingRoom() {
+	Room<Monster> tempRoom("R1");
+	board.findVertexNode(tempRoom)->getData().getData().setHero(hero);
+	hero->setCurrentRoomId("R1");
+}
+
+void Dungeon::showNeghboringRooms() const {
+	std::cout << "Signs, each located at the entrance of a path appear before you, each having the following text: " << std::endl;
+	Room<Monster> tempRoom(hero->getCurrentRoomId());
+	board.findVertexNode(tempRoom)->getData().getAdj().print();
+}
+
+bool Dungeon::moveHero(const std::string& roomId) {
+	Room<Monster> tempRoom(roomId);
+	Room<Monster> currentRoom(hero->getCurrentRoomId());
+	if (!board.findVertexNode(tempRoom)) {
+		std::cout << "Where did you even read that Magic ID, try again!" << std::endl;
+		return false;
+	}
+	
+	board.findVertexNode(currentRoom)->getData().getData().setWasVisited(true);
+	board.findVertexNode(currentRoom)->getData().getData().setHero(nullptr);
+	board.findVertexNode(tempRoom)->getData().getData().setHero(hero);
+	hero->setCurrentRoomId(roomId);
+	return true;
 }

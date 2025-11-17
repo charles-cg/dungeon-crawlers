@@ -36,8 +36,9 @@ private:
 
     bool loadPathsTXT(std::string filename);
 public:
-    Dungeon() : hero(nullptr), totalRooms(0) {
+    Dungeon() : totalRooms(0) {
         monsterCodex.loadMonsterData();
+        hero = new Hero("H1", "Yu", 100, 3, 10);
     }
 
     ~Dungeon();
@@ -47,6 +48,12 @@ public:
     bool loadPathData();
 
     void printBoard() const;
+
+    void setStartingRoom();
+
+    void showNeghboringRooms() const;
+
+    bool moveHero(const std::string& roomId);
 };
 
 #endif

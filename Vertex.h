@@ -29,6 +29,8 @@ public:
 
     T getData() const;
 
+    T& getData();
+
     bool isVisited() const;
 
     void setVisited(bool visited);

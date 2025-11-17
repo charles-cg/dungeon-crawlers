@@ -7,7 +7,11 @@ int main() {
     bool flag = dungeon.loadRoomData();
     dungeon.loadPathData();
 
+    dungeon.setStartingRoom();
+
     dungeon.printBoard();
+
+    dungeon.showNeghboringRooms();
 
     return 0;
 }

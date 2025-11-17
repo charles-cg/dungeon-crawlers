@@ -30,12 +30,12 @@ void LinkedList<T>::print() const{
         cout<< "Empty List!" <<endl;
     }else {
         const ListNode<T>* current= head;
-        cout<<"[";
+        cout<<"||";
         while (current) {
-            cout << " " << current->getData() << " ->";
+            cout << " " << current->getData() << " ||\n";
             current = current->getNext();
         }
-        cout<< "]" <<endl;
+        cout << endl;
     }
 
 }
