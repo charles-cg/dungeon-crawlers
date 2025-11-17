@@ -1,17 +1,12 @@
-#include "Dungeon.h"
+#include "GameController.h"
 #include <iostream>
 
 int main() {
-    Dungeon dungeon;
-    
-    bool flag = dungeon.loadRoomData();
-    dungeon.loadPathData();
+    GameController controller;
 
-    dungeon.setStartingRoom();
-
-    dungeon.printBoard();
-
-    dungeon.showNeghboringRooms();
+    while(true) {
+        controller.handleHeroMovement();
+    }
 
     return 0;
 }

@@ -5,7 +5,6 @@
 
 #define MONSTERS_TXT "monsters.txt"
 
-
 class Codex {
 private:
     int totalMonsters;
