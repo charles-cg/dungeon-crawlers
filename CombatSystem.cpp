@@ -30,13 +30,20 @@ std::cout << hero.getName() << " attacks! " << enemy.getName() << std::endl;
 std::cout << " Damage dealt: " << heroDamage << std::endl;
 std::cout << std::endl;
 std::cout << "Curent battle status" << std::endl;
-}
 battleStatus();
+}
+
 
 //Enemy`s/Monster's turn
 if(enemy.Hp() > 0) {
 
 int enemyDamage = enemy.getAtk() - hero.getDef();
+// Here goes the accuracy part
+
+if (hero.getDef() > enemy.getAtk()) {
+std::cout << enemy.getName() << " missed!" << std::endl;
+
+} else if (enemyDamage <= hero.getDef()) {
 hero.setHp(hero.getHp() - enemyDamage);
 battleStatus();
 
@@ -45,6 +52,8 @@ std::cout << " Damage dealt: " << enemyDamage << std::endl;
 std::cout << std::endl;
 std::cout << "Curent battle status" << std::endl;
 battleStatus();
+}
+
 }
 
 if(isBattleOver()) {
