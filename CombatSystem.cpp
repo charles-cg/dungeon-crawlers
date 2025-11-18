@@ -73,3 +73,5 @@ battleStatus();
 bool CombatSystem::isBattleOver() const {
 return hero.getHp() <= 0 || enemy.getHp() <= 0;
 }
+
+//To do, crear función max y agregar el rand() para el battle system
