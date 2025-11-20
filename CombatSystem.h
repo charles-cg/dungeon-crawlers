@@ -5,7 +5,8 @@
 #ifndef COMBATSYSTEM_H
 #define COMBATSYSTEM_H
 
-
+#include "Hero.h"
+#include "Entity.h"
 
 class CombatSystem {
 
