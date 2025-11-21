@@ -5,13 +5,20 @@
 class Hero : public Entity {
 private:
     std::string currentRoomId;
+    int upgradePoints; // Used in the upgrade system
 public:
-    Hero(std::string id, std::string name, int hp, int atk, int def) : currentRoomId(""),  Entity(id, name, hp, atk, def) {}
+    Hero(std::string id, std::string name, int hp, int atk, int def) : currentRoomId(""),  Entity(id, name, hp, atk, def), upgradePoints(0) {}
     ~Hero();
 
     void setCurrentRoomId(const std::string& id);
 
     std::string getCurrentRoomId() const;
+
+    int getUpgradePoints() const;
+
+    void addUpgradePoints(int points);
+
+    void spendUpgradePoints();
 };
 
 #endif

@@ -9,7 +9,7 @@
 void CombatSystem::battleStatus() const {
     std::cout << "Battle Status" << std::endl;
     std::cout << "Hero: " << hero.getName() << " Hit Points: " << hero.getHp() << " Defence: " << hero.getDef() << std::endl;
-    std::cout << "Enemy: " << enemy.getName() << " Hit Points: " << enemy.getHp() << " Defence: " << enemy.getDef() << std::endl;
+    std::cout << "Enemy: " << enemy.getName() << " Hit Points: " << enemy.getHp() << " Defence: " << enemy.getDef()<< "Reward: " << enemy.getReward() << std::endl;
     std::cout << std::endl;
 }
 
@@ -34,8 +34,8 @@ void CombatSystem::turn() {
         }
         if(enemy.getHp() > 0) {
             int enemyDamage = enemy.getAtk() - hero.getDef();
-            int chance = rand() % 100;
-            float accuracy = enemy.getAccuracy(); // Falta corregir
+            int chance = rand() % 100; // Optated to use rand() due to simplicity rather than <random> library
+            float accuracy = enemy.getAccuracy();
             int accuracyPercentage = accuracy * 100;
 
             if (enemyDamage < 0) {
@@ -60,7 +60,10 @@ void CombatSystem::turn() {
         if(isBattleOver()) {
             std::cout << " The battle is over!" << std::endl;
             if (enemy.getHp() == 0) {
+                int pointsRewarded = enemy.getReward();
                 std::cout << hero.getName() << " won the battle!" << std::endl;
+                std::cout << "Points granted by defeating " << enemy.getName() << " are: " << pointsRewarded << " points!" << std::endl;
+                hero.addUpgradePoints(pointsRewarded);
             } else if (hero.getHp() == 0) {
                 std::cout << enemy.getName() << " won the battle!" << std::endl;
                 std::cout << "Game Over" << std::endl;
@@ -72,6 +75,13 @@ void CombatSystem::turn() {
 
 bool CombatSystem::isBattleOver() const {
         return hero.getHp() <= 0 || enemy.getHp() <= 0;
+}
+
+void CombatSystem::UpgradeStats() {
+    int points = enemy.getReward();
+
+    hero.addUpgradePoints(points);
+
 }
 
 //To do, agregar el reward system
