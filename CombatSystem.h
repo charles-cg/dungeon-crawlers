@@ -11,15 +11,15 @@
 class CombatSystem {
 
 private:
-    Hero& hero; // cambiar a puntero
-    Monster& enemy; // The enemy is the monster that appeared in the current room
+    Hero* hero; // cambiar a puntero
+    Monster* enemy; // The enemy is the monster that appeared in the current room
     bool isBattleOver() const;
     void UpgradeStats();
 
 public:
     CombatSystem(Hero& hero, Monster& enemy): hero(hero), enemy(enemy) {}
     void battleStatus() const;
-    void turn();
+    void turn() const;
 
 };
 
