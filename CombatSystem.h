@@ -19,7 +19,7 @@ private:
 public:
     CombatSystem(Hero& hero, Monster& enemy): hero(hero), enemy(enemy) {}
     void battleStatus() const;
-    void turn() const;
+    static void turn();
 
 };
 

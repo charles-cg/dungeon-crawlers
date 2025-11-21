@@ -13,7 +13,7 @@ void CombatSystem::battleStatus() const {
     std::cout << std::endl;
 }
 
-void CombatSystem::turn() const {
+void CombatSystem::turn() {
     while (hero->getHp() > 0 && enemy->getHp() > 0) {
         //Hero´s turn
         battleStatus();
@@ -36,7 +36,7 @@ void CombatSystem::turn() const {
             int enemyDamage = enemy->getAtk() - hero->getDef();
             int chance = rand() % 100; // Optated to use rand() due to simplicity rather than <random> library
             float accuracy = enemy->getAccuracy();
-            int accuracyPercentage = accuracy * 100;
+            int accuracyPercentage = static_cast<int>(accuracy * 100);
 
             if (enemyDamage < 0) {
                 std::cout << enemy->getName() << " missed!" << std::endl;
@@ -60,7 +60,7 @@ void CombatSystem::turn() const {
         if(isBattleOver()) {
             std::cout << " The battle is over!" << std::endl;
             if (enemy->getHp() == 0) {
-                int pointsRewarded = enemy->getReward(); // Preguntar si es necesario hacer un cast
+                int pointsRewarded = static_cast<int>(enemy->getReward()); // Preguntar si es necesario hacer un cast
                 std::cout << hero->getName() << " won the battle!" << std::endl;
                 std::cout << "Points granted by defeating " << enemy->getName() << " are: " << pointsRewarded << " points!" << std::endl;
                 hero->addUpgradePoints(pointsRewarded);
