@@ -7,17 +7,18 @@
 
 #include "Hero.h"
 #include "Entity.h"
+#include "Monster.h"
 
 class CombatSystem {
 
 private:
 
 Hero& hero;
-Entity& enemy; // The enemy is the monster that appeared in the current room
+Monster& enemy; // The enemy is the monster that appeared in the current room
 
 public:
 
-CombatSystem(Hero& hero, Entity& enemy): hero(hero), enemy(enemy) {}
+CombatSystem(Hero& hero, Monster& enemy): hero(hero), enemy(enemy) {}
 void battleStatus() const;
 void turn();
 bool isBattleOver() const;

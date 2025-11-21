@@ -34,18 +34,27 @@ void CombatSystem::turn() {
         }
         if(enemy.getHp() > 0) {
             int enemyDamage = enemy.getAtk() - hero.getDef();
+            int chance = rand() % 100;
+            float accuracy = enemy.getAccuracy(); // Falta corregir
+            int accuracyPercentage = accuracy * 100;
 
             if (enemyDamage < 0) {
                 std::cout << enemy.getName() << " missed!" << std::endl;
                 enemyDamage = 0;
             } else {
-                hero.setHp(hero.getHp() - enemyDamage);
-                std::cout << enemy.getName() << " attacks! " << hero.getName() << std::endl;
-                std::cout << " Damage dealt: " << enemyDamage << std::endl;
-                std::cout << std::endl;
-                std::cout << "Curent battle status" << std::endl;
+                if (chance < accuracyPercentage) {
+                    hero.setHp(hero.getHp() - enemyDamage);
+                    std::cout << enemy.getName() << " attacks! " << hero.getName() << std::endl;
+                    std::cout << " Damage dealt: " << enemyDamage << std::endl;
+                    std::cout << std::endl;
+                    std::cout << "Curent battle status" << std::endl;
 
-                battleStatus();
+                    battleStatus();
+
+                } else if (chance > accuracyPercentage) {
+                    std::cout << enemy.getName() << " missed!" << std::endl;
+                    battleStatus();
+                }
             }
         }
         if(isBattleOver()) {
@@ -65,4 +74,4 @@ bool CombatSystem::isBattleOver() const {
         return hero.getHp() <= 0 || enemy.getHp() <= 0;
 }
 
-//To do, crear función max y agregar el rand() para el battle system
+//To do, agregar el reward system
