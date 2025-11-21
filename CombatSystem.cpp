@@ -105,6 +105,8 @@ void CombatSystem::UpgradeStats() {
             case 4:
                 std::cout << "Goodbye!" << std::endl;
                 break;
+            default:
+                std::cout << "Invalid option" << std::endl;
         }
     }
 
