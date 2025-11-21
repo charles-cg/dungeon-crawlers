@@ -9,7 +9,7 @@
 void CombatSystem::battleStatus() const {
     std::cout << "Battle Status" << std::endl;
     std::cout << "Hero: " << hero.getName() << " Hit Points: " << hero.getHp() << " Defence: " << hero.getDef() << std::endl;
-    std::cout << "Enemy: " << enemy.getName() << " Hit Points: " << enemy.getHp() << " Defence: " << enemy.getDef()<< "Reward: " << enemy.getReward() << std::endl;
+    std::cout << "Enemy: " << enemy.getName() << " Hit Points: " << enemy.getHp() << " Defence: " << enemy.getDef() << std::endl;
     std::cout << std::endl;
 }
 
@@ -28,7 +28,7 @@ void CombatSystem::turn() {
             std::cout << hero.getName() << " attacks! " << enemy.getName() << std::endl;
             std::cout << " Damage dealt: " << heroDamage << std::endl;
             std::cout << std::endl;
-            std::cout << "Curent battle status" << std::endl;
+            std::cout << "Current battle status" << std::endl;
 
             battleStatus();
         }
@@ -60,7 +60,7 @@ void CombatSystem::turn() {
         if(isBattleOver()) {
             std::cout << " The battle is over!" << std::endl;
             if (enemy.getHp() == 0) {
-                int pointsRewarded = enemy.getReward();
+                int pointsRewarded = enemy.getReward(); // Preguntar si es necesario hacer un cast
                 std::cout << hero.getName() << " won the battle!" << std::endl;
                 std::cout << "Points granted by defeating " << enemy.getName() << " are: " << pointsRewarded << " points!" << std::endl;
                 hero.addUpgradePoints(pointsRewarded);
@@ -78,9 +78,35 @@ bool CombatSystem::isBattleOver() const {
 }
 
 void CombatSystem::UpgradeStats() {
-    int points = enemy.getReward();
+    int points = hero.getUpgradePoints();
 
-    hero.addUpgradePoints(points);
+    while (points > 0) {
+        std::cout << "UPGRADE SYSTEM" << std::endl;
+        std::cout << "Points left: " << points << std::endl;
+        std::cout << "Choose an option: " << std::endl;
+        std::cout << "1- Upgrade hit points" << std::endl;
+        std::cout << "2- Upgrade defense" << std::endl;
+        std::cout << "3- Upgrade attack" << std::endl;
+        std::cout << "Exit" << std::endl;
+
+        int option;
+        std::cin >> option;
+
+        switch (option) {
+            case 1:
+                hero.spendUpgradePoints();
+                break;
+            case 2:
+                hero.spendUpgradePoints();
+                break;
+            case 3:
+                hero.spendUpgradePoints();
+                break;
+            case 4:
+                std::cout << "Goodbye!" << std::endl;
+                break;
+        }
+    }
 
 }
 
