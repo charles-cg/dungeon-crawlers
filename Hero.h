@@ -19,6 +19,12 @@ public:
     void addUpgradePoints(int points);
 
     void spendUpgradePoints();
+
+    void uppgradeAtk(int amount);
+
+    void uppgradeDef(int amount);
+
+    void uppgradeHp(int amount);
 };
 
 #endif

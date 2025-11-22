@@ -5,6 +5,9 @@
 #include "CombatSystem.h"
 #include <iostream>
 #include "Monster.h"
+#include "Hero.h"
+#include <ctime>
+#include <cstdlib>
 
 void CombatSystem::battleStatus() const {
     std::cout << "Battle Status" << std::endl;
@@ -13,7 +16,7 @@ void CombatSystem::battleStatus() const {
     std::cout << std::endl;
 }
 
-void CombatSystem::turn() {
+void CombatSystem::turn() const {
     while (hero->getHp() > 0 && enemy->getHp() > 0) {
         //Hero´s turn
         battleStatus();
@@ -95,13 +98,16 @@ void CombatSystem::UpgradeStats() {
 
         switch (option) {
             case 1:
-                hero->spendUpgradePoints();
+                hero->upgradeHp();
+                points--;
                 break;
             case 2:
-                hero->spendUpgradePoints();
+                hero->upgradeDef();
+                points--;
                 break;
             case 3:
-                hero->spendUpgradePoints();
+                hero->upgradeAtk();
+                points--;
                 break;
             case 4:
                 std::cout << "Goodbye!" << std::endl;
@@ -109,8 +115,9 @@ void CombatSystem::UpgradeStats() {
             default:
                 std::cout << "Invalid option" << std::endl;
         }
+        hero->spendUpgradePoints();
     }
-
+    std::cout << hero->getName() << " has no more points left to spend" << std::endl;
 }
 
 //To do, agregar el reward system

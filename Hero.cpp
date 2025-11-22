@@ -29,3 +29,15 @@ void Hero::spendUpgradePoints() {
         std::cout << "You spent a point of upgrade!" << std::endl;
     }
 }
+
+void uppgradeAtk(int amount) {
+    atk += amount;
+}
+
+void uppgradeDef(int amount) {
+    def += amount;
+}
+
+void uppgradeHp(int amount) {
+    maxHp += amount;
+}
