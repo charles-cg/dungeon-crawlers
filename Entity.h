@@ -10,6 +10,7 @@ protected:
     int hp;
     int atk;
     int def;
+    int maxHp;
 public:
     Entity();
     Entity(std::string id, std::string name, int hp, int atk, int def) : id(id), name(name), hp(hp), atk(atk), def(def) {}

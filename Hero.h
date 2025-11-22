@@ -20,11 +20,11 @@ public:
 
     void spendUpgradePoints();
 
-    void uppgradeAtk(int amount);
+    void upgradeAtk(int amount);
 
-    void uppgradeDef(int amount);
+    void upgradeDef(int amount);
 
-    void uppgradeHp(int amount);
+    void upgradeHp(int amount);
 };
 
 #endif

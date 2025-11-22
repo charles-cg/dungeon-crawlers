@@ -30,14 +30,14 @@ void Hero::spendUpgradePoints() {
     }
 }
 
-void uppgradeAtk(int amount) {
+void upgradeAtk(int amount) {
     atk += amount;
 }
 
-void uppgradeDef(int amount) {
+void upgradeDef(int amount) {
     def += amount;
 }
 
-void uppgradeHp(int amount) {
+void upgradeHp(int amount) {
     maxHp += amount;
 }
