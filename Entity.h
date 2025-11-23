@@ -13,7 +13,7 @@ protected:
     int maxHp;
 public:
     Entity();
-    Entity(std::string id, std::string name, int hp, int atk, int def) : id(id), name(name), hp(hp), atk(atk), def(def) {}
+    Entity(std::string id, std::string name, int hp, int atk, int def) : id(id), name(name), hp(hp), atk(atk), def(def), maxHp(hp) {}
 
     ~Entity();
 
@@ -22,12 +22,14 @@ public:
     void setHp(const int& hp);
     void setAtk(const int& atk);
     void setDef(const int& def);
+    void setMaxHp(const int& maxHp);
 
     std::string getId();
     std::string getName();
     int getHp();
     int getAtk();
     int getDef();
+    int getMaxHp();
 };
 
 #endif

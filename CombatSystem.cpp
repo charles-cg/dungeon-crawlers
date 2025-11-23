@@ -6,33 +6,38 @@
 #include <iostream>
 #include "Monster.h"
 #include "Hero.h"
-#include <ctime>
 #include <cstdlib>
 
 void CombatSystem::battleStatus() const {
-    if (enemy->getHp() <= 0) {
-        std::cout << "Hero Status" << std::endl;
-        std::cout << "Hero: " << hero->getName() << " Hit Points: " << hero->getHp() << " Defence: " << hero->getDef() << std::endl;
-    } else {
+
         std::cout << "Battle Status" << std::endl;
         std::cout << "Hero: " << hero->getName() << " Hit Points: " << hero->getHp() << " Defence: " << hero->getDef() << std::endl;
         std::cout << "Enemy: " << enemy->getName() << " Hit Points: " << enemy->getHp() << " Defence: " << enemy->getDef() << std::endl;
         std::cout << std::endl;
-    }
 }
 
-void CombatSystem::turn() const {
+void CombatSystem::turn() {
     while (hero->getHp() > 0 && enemy->getHp() > 0) {
         //Hero´s turn
         battleStatus();
 
-        int heroDamage = hero->getAtk() - enemy->getDef();
+        float percentageDamageReducedEnemy = static_cast<float>(enemy->getDef()) / 100;
+        float heroDamage = static_cast<float>(hero->getAtk()) - percentageDamageReducedEnemy;
 
-        if (heroDamage < 0){
-            std::cout << hero->getName() << " missed!" << std::endl;
+        if (heroDamage < 0) {
             heroDamage = 0;
+            std::cout << hero->getName() << " missed!" << std::endl;
+
+            battleStatus();
+        }
+        if (heroDamage == 0) {
+            std::cout << hero->getName() << " could not penetrate the defence of " << enemy->getName() << std::endl;
+
+            battleStatus();
+
         } else {
-            enemy->setHp(enemy->getHp() - heroDamage);
+            int heroDamageInt = static_cast<int>(heroDamage);
+            enemy->setHp(enemy->getHp() - heroDamageInt);
             std::cout << hero->getName() << " attacks! " << enemy->getName() << std::endl;
             std::cout << " Damage dealt: " << heroDamage << std::endl;
             std::cout << std::endl;
@@ -41,17 +46,27 @@ void CombatSystem::turn() const {
             battleStatus();
         }
         if(enemy->getHp() > 0) {
-            int enemyDamage = enemy->getAtk() - hero->getDef();
-            int chance = rand() % 100; // Optated to use rand() due to simplicity rather than <random> library
+
+            float percentageDamageReducedHero = static_cast<float>(hero->getDef()) / 100;
+            float enemyDamage = static_cast<float>(enemy->getAtk()) - percentageDamageReducedHero;
+
+            int chance = rand() % 100; // Chose to use rand() due to simplicity rather than <random> library
             float accuracy = enemy->getAccuracy();
             int accuracyPercentage = static_cast<int>(accuracy * 100);
 
             if (enemyDamage < 0) {
-                std::cout << enemy->getName() << " missed!" << std::endl;
                 enemyDamage = 0;
+                std::cout << enemy->getName() << " missed!" << std::endl;
+
+                battleStatus();
+            } if (enemyDamage == 0) {
+                std::cout << enemy->getName() << " could not penetrate your defence!" << std::endl;
+
+                battleStatus();
             } else {
                 if (chance < accuracyPercentage) {
-                    hero->setHp(hero->getHp() - enemyDamage);
+                    int enemyDamageInt = static_cast<int>(enemyDamage);
+                    hero->setHp(hero->getHp() - enemyDamageInt);
                     std::cout << enemy->getName() << " attacks! " << hero->getName() << std::endl;
                     std::cout << " Damage dealt: " << enemyDamage << std::endl;
                     std::cout << std::endl;
@@ -72,6 +87,7 @@ void CombatSystem::turn() const {
                 std::cout << hero->getName() << " won the battle!" << std::endl;
                 std::cout << "Points granted by defeating " << enemy->getName() << " are: " << pointsRewarded << " points!" << std::endl;
                 hero->addUpgradePoints(pointsRewarded);
+                upgradeStats();
             } else if (hero->getHp() == 0) {
                 std::cout << enemy->getName() << " won the battle!" << std::endl;
                 std::cout << "Game Over" << std::endl;
@@ -86,43 +102,42 @@ bool CombatSystem::isBattleOver() const {
 }
 
 
-void CombatSystem::UpgradeStats() {
-    int points = hero->getUpgradePoints();
+void CombatSystem::upgradeStats() {
 
-    while (points > 0) {
+    while (hero->getUpgradePoints() > 0) {
+
+        int points = hero->getUpgradePoints();
+
         std::cout << "UPGRADE SYSTEM" << std::endl;
         std::cout << "Points left: " << points << std::endl;
         std::cout << "Choose an option: " << std::endl;
         std::cout << "1- Upgrade hit points" << std::endl;
         std::cout << "2- Upgrade defense" << std::endl;
         std::cout << "3- Upgrade attack" << std::endl;
-        std::cout << "Exit" << std::endl;
+        std::cout << "4- Exit" << std::endl;
 
         int option;
         std::cin >> option;
 
         switch (option) {
             case 1:
-                hero->upgradeHp(points);
-                points--;
-                std::cout << " New stats: " << std::endl;
+                hero->spendUpgradePointsHp(1);
+                std::cout << "Congratulations, you have upgraded your hit points the new stats are: " << std::endl;
                 battleStatus();
                 break;
             case 2:
-                hero->upgradeDef(points);
-                points--;
-                std::cout << " New stats: " << std::endl;
+                hero->spendUpgradePointsDef(1);
+                std::cout << "Congratulations, you have upgraded your defence the new stats are: " << std::endl;
                 battleStatus();
                 break;
             case 3:
-                hero->upgradeAtk(points);
-                points--;
-                std::cout << " New stats: " << std::endl;
+                hero->spendUpgradePointsAtk(1);
+                std::cout << "Congratulations, you have upgraded your attack the new stats are: " << std::endl;
                 battleStatus();
                 break;
             case 4:
                 std::cout << "Goodbye!" << std::endl;
-                break;
+                return;
             default:
                 std::cout << "Invalid option" << std::endl;
         }
@@ -131,4 +146,3 @@ void CombatSystem::UpgradeStats() {
     std::cout << hero->getName() << " has no more points left to spend" << std::endl;
 }
 
-//To do, agregar el reward system

@@ -37,6 +37,10 @@ void Entity::setDef(const int& def) {
     this->def = def;
 }
 
+void Entity::setMaxHp(const int& maxHp) {
+    this->maxHp = maxHp;
+}
+
 // getter methods
 std::string Entity::getId() {
     return id;
@@ -53,4 +57,8 @@ int Entity::getAtk() {
 }
 int Entity::getDef() {
     return def;
+}
+
+int Entity::getMaxHp() {
+     return maxHp;
 }

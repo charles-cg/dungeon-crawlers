@@ -14,12 +14,12 @@ private:
     Hero* hero;
     Monster* enemy; // The enemy is the monster that appeared in the current room
     bool isBattleOver() const;
-    void UpgradeStats();
+    void upgradeStats();
 
 public:
     CombatSystem(Hero* hero, Monster* enemy): hero(hero), enemy(enemy) {}
     void battleStatus() const;
-    void turn() const;
+    void turn();
 
 };
 
