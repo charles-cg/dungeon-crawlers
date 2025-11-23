@@ -10,10 +10,15 @@
 #include <cstdlib>
 
 void CombatSystem::battleStatus() const {
-    std::cout << "Battle Status" << std::endl;
-    std::cout << "Hero: " << hero->getName() << " Hit Points: " << hero->getHp() << " Defence: " << hero->getDef() << std::endl;
-    std::cout << "Enemy: " << enemy->getName() << " Hit Points: " << enemy->getHp() << " Defence: " << enemy->getDef() << std::endl;
-    std::cout << std::endl;
+    if (enemy->getHp() <= 0) {
+        std::cout << "Hero Status" << std::endl;
+        std::cout << "Hero: " << hero->getName() << " Hit Points: " << hero->getHp() << " Defence: " << hero->getDef() << std::endl;
+    } else {
+        std::cout << "Battle Status" << std::endl;
+        std::cout << "Hero: " << hero->getName() << " Hit Points: " << hero->getHp() << " Defence: " << hero->getDef() << std::endl;
+        std::cout << "Enemy: " << enemy->getName() << " Hit Points: " << enemy->getHp() << " Defence: " << enemy->getDef() << std::endl;
+        std::cout << std::endl;
+    }
 }
 
 void CombatSystem::turn() const {
@@ -54,7 +59,7 @@ void CombatSystem::turn() const {
 
                     battleStatus();
 
-                } else if (chance > accuracyPercentage) {
+                } else {
                     std::cout << enemy->getName() << " missed!" << std::endl;
                     battleStatus();
                 }
@@ -98,16 +103,22 @@ void CombatSystem::UpgradeStats() {
 
         switch (option) {
             case 1:
-                hero->upgradeHp();
+                hero->upgradeHp(points);
                 points--;
+                std::cout << " New stats: " << std::endl;
+                battleStatus();
                 break;
             case 2:
-                hero->upgradeDef();
+                hero->upgradeDef(points);
                 points--;
+                std::cout << " New stats: " << std::endl;
+                battleStatus();
                 break;
             case 3:
-                hero->upgradeAtk();
+                hero->upgradeAtk(points);
                 points--;
+                std::cout << " New stats: " << std::endl;
+                battleStatus();
                 break;
             case 4:
                 std::cout << "Goodbye!" << std::endl;
@@ -115,7 +126,7 @@ void CombatSystem::UpgradeStats() {
             default:
                 std::cout << "Invalid option" << std::endl;
         }
-        hero->spendUpgradePoints();
+
     }
     std::cout << hero->getName() << " has no more points left to spend" << std::endl;
 }
