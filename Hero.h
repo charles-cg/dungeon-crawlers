@@ -6,6 +6,7 @@ class Hero : public Entity {
 private:
     std::string currentRoomId;
     int upgradePoints; // Used in the upgrade system
+    int stamina;
 public:
     Hero(std::string id, std::string name, int hp, int atk, int def) : currentRoomId(""),  Entity(id, name, hp, atk, def), upgradePoints(0) {}
     ~Hero();
@@ -25,6 +26,9 @@ public:
     void upgradeAtk(int amount);
     void upgradeDef(int amount);
     void upgradeHp(int amount);
+
+    void setStamina(int stamina);
+    int getStamina();
 };
 
 #endif

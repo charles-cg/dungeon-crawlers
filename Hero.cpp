@@ -63,3 +63,11 @@ void Hero::upgradeHp(int amount) {
     hp += amount;
     if (hp > maxHp) hp = maxHp;
 }
+
+void Hero::setStamina(int stamina) {
+    this->stamina = stamina;
+}
+
+int Hero::getStamina() {
+    return stamina;
+}
