@@ -1,4 +1,5 @@
 #include "Dungeon.h"
+#include <cstdlib>
 
 Dungeon::~Dungeon() {
 	delete hero;
@@ -230,7 +231,6 @@ bool Dungeon::moveHero(const std::string& roomId) {
 	Room<Monster> tempRoom(roomId);
 	Room<Monster> currentRoom(hero->getCurrentRoomId());
 	Edge<Room<Monster>> searchEdge(tempRoom, 0);
-	// Check if targetRoom is adjacent to currentRoom (not the other way around)
 	if (!board.findVertexNode(currentRoom)->getData().getAdj().search(searchEdge)) {
 		std::cout << "Where did you even read that Magic ID, try again!" << std::endl;
 		return false;
@@ -247,4 +247,27 @@ Monster* Dungeon::getCurrentMonster() {
 	Room<Monster> currentRoom(hero->getCurrentRoomId());
 
 	return &board.findVertexNode(currentRoom)->getData().getData().getCreature();
+}
+
+bool Dungeon::shouldTriggerEncounter() {
+	Room<Monster> currentRoom(hero->getCurrentRoomId());
+	float encounterChance = board.findVertexNode(currentRoom)->getData().getData().getEncounterChance();
+	
+	float randomValue = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
+	
+	return randomValue < encounterChance;
+}
+
+bool Dungeon::handleEncounter() {
+	Room<Monster> currentRoom(hero->getCurrentRoomId());
+
+	bool encounterFlag = shouldTriggerEncounter();
+
+	bool defeatedFlag = board.findVertexNode(currentRoom)->getData().getData().getWasMonsterDefeated();
+
+	if (defeatedFlag == false && encounterFlag == true) {
+		return true;
+	}
+
+	return false;
 }

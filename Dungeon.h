@@ -56,6 +56,10 @@ public:
     bool moveHero(const std::string& roomId);
 
     Monster* getCurrentMonster();
+
+    bool shouldTriggerEncounter();
+
+    bool handleEncounter();
 };
 
 #endif
