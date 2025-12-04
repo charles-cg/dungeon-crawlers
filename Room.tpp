@@ -35,8 +35,13 @@ void Room<T>::setEncounterChance(const float& encounterChance) {
 }
 
 template <typename T>
-void Room<T>::setWasVisited(const bool& wasVisited) {
+void Room<T>::setWasVisited(bool wasVisited) {
     this->wasVisited = wasVisited;
+}
+
+template <typename T>
+void Room<T>::setWasMonsterDefeated(bool wasMonsterDefeated) {
+    this->wasMonsterDefeated = wasMonsterDefeated;
 }
 
 template <typename T>
@@ -69,6 +74,11 @@ float Room<T>::getEncounterChance() {
 template <typename T>
 bool Room<T>::getWasVisited() {
     return wasVisited;
+}
+
+template <typename T>
+bool Room<T>::getWasMonsterDefeated() {
+    return wasMonsterDefeated;
 }
 
 template <typename T>
