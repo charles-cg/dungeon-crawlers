@@ -242,3 +242,9 @@ bool Dungeon::moveHero(const std::string& roomId) {
 	hero->setCurrentRoomId(roomId);
 	return true;
 }
+
+Monster* Dungeon::getCurrentMonster() {
+	Room<Monster> currentRoom(hero->getCurrentRoomId());
+
+	return &board.findVertexNode(currentRoom)->getData().getData().getCreature();
+}

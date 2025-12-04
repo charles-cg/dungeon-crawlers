@@ -54,6 +54,8 @@ public:
     void showNeghboringRooms() const;
 
     bool moveHero(const std::string& roomId);
+
+    Monster* getCurrentMonster();
 };
 
 #endif

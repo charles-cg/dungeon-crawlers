@@ -13,17 +13,19 @@ private:
     std::string name;
     float encounterChance; // chance ranges from 0 - 1
     bool wasVisited; // flag indicating if a square has been visited
+    bool wasMonsterDefeated;
     T creature;
     Hero* hero;
 public:
-    Room();
+    Room() : wasMonsterDefeated(false) {};
     Room(const std::string& id) : id(id) {}
     ~Room();
 
     void setId(const std::string& id);
     void setName (const std::string& name);
     void setEncounterChance(const float& encounterChance);
-    void setWasVisited(const bool& wasVisited);
+    void setWasVisited(bool wasVisited);
+    void setWasMonsterDefeated(bool wasMonsterDefeated);
     void setCreature(const T& creature);
     void setHero(Hero* hero);
 
@@ -31,6 +33,7 @@ public:
     std::string getName();
     float getEncounterChance();
     bool getWasVisited();
+    bool getWasMonsterDefeated();
     T getCreature();
     Hero* getHero();
 

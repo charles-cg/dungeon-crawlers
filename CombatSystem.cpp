@@ -4,8 +4,6 @@
 
 #include "CombatSystem.h"
 #include <iostream>
-#include "Monster.h"
-#include "Hero.h"
 #include <cstdlib>
 
 void CombatSystem::battleStatus() const {
