@@ -10,8 +10,10 @@
 
 void CombatSystem::battleStatus() const {
 
-        std::cout << "Battle Status" << std::endl;
+        std::cout << "Battle Status" << std::endl; //The menu is displayed to show the current stats of both hero and monster
+        // Hero stats
         std::cout << "Hero: " << hero->getName() << " Hit Points: " << hero->getHp() << " Defence: " << hero->getDef() << std::endl;
+        // Current monster stats
         std::cout << "Enemy: " << enemy->getName() << " Hit Points: " << enemy->getHp() << " Defence: " << enemy->getDef() << std::endl;
         std::cout << std::endl;
 }
@@ -19,41 +21,44 @@ void CombatSystem::battleStatus() const {
 void CombatSystem::turn() {
     while (hero->getHp() > 0 && enemy->getHp() > 0) {
         //Hero´s turn
-        battleStatus();
+        battleStatus(); // The initial status is shown before the battle
 
-        float percentageDamageReducedEnemy = static_cast<float>(enemy->getDef()) / 100;
-        float heroDamage = static_cast<float>(hero->getAtk()) - percentageDamageReducedEnemy;
+        //From the txt, the percentage of reduction from the defence of the monster is calculated.
+        float percentageDamageReducedEnemy = static_cast<float>(enemy->getDef()) / 100; // The static cast is made because the defence is an integer in the txt.
+        float heroDamage = static_cast<float>(hero->getAtk()) - percentageDamageReducedEnemy; // The damage the hero is going to make is calculated
 
-        if (heroDamage < 0) {
+        if (heroDamage < 0) { //First case, the enemy damage is less than cero.
             heroDamage = 0;
-            std::cout << hero->getName() << " missed!" << std::endl;
+            std::cout << hero->getName() << " missed!" << std::endl; //We consider this case as the hero missed the attack
 
-            battleStatus();
+            battleStatus(); // The stats are shown
         }
-        if (heroDamage == 0) {
+        if (heroDamage == 0) { // Second case, the damage is equal to cero, this is considered that the damage from the hero could not penetrate the defence of the monster
             std::cout << hero->getName() << " could not penetrate the defence of " << enemy->getName() << std::endl;
 
-            battleStatus();
+            battleStatus(); // We again show the stats
 
-        } else {
-            int heroDamageInt = static_cast<int>(heroDamage);
-            enemy->setHp(enemy->getHp() - heroDamageInt);
+        } else { // If any of the previous cases are fulfilled, the battle "finally" starts
+            int heroDamageInt = static_cast<int>(heroDamage); //Here we retransform the hero damage into an int
+            enemy->setHp(enemy->getHp() - heroDamageInt); // The monster "receives" the damage
+            //Messages to understand the flow of the battle
             std::cout << hero->getName() << " attacks! " << enemy->getName() << std::endl;
-            std::cout << " Damage dealt: " << heroDamage << std::endl;
+            std::cout << " Damage dealt: " << heroDamage << std::endl; // Shows the damage made to the monster
             std::cout << std::endl;
             std::cout << "Current battle status" << std::endl;
-
-            battleStatus();
+            battleStatus(); //Shows the newly altered stats
         }
-        if(enemy->getHp() > 0) {
+        if(enemy->getHp() > 0) { //If the enemy has not been defeated, his turn starts
 
-            float percentageDamageReducedHero = static_cast<float>(hero->getDef()) / 100;
+            float percentageDamageReducedHero = static_cast<float>(hero->getDef()) / 100; //The same calculations are applied to the enemy
             float enemyDamage = static_cast<float>(enemy->getAtk()) - percentageDamageReducedHero;
 
-            int chance = rand() % 100; // Chose to use rand() due to simplicity rather than <random> library
+            //In this case, even thought the rand() has a predictable generation of numbers, for the purpose of this project, it's not relevant
+            int chance = rand() % 100; // Chose to use rand() due to simplicity rather than <random> library, the seed si in the main
             float accuracy = enemy->getAccuracy();
             int accuracyPercentage = static_cast<int>(accuracy * 100);
 
+            //The same cases apply for the monster
             if (enemyDamage < 0) {
                 enemyDamage = 0;
                 std::cout << enemy->getName() << " missed!" << std::endl;
