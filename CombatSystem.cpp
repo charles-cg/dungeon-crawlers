@@ -56,26 +56,28 @@ void CombatSystem::turn() {
             float accuracy = enemy->getAccuracy();
             int accuracyPercentage = static_cast<int>(accuracy * 100);
 
-            //The same cases apply for the monster
-            if (enemyDamage < 0) {
+            //The same cases from the hero apply for the monster
+            if (enemyDamage < 0) { //The monster missed
                 enemyDamage = 0;
                 std::cout << enemy->getName() << " missed!" << std::endl;
 
-                battleStatus();
-            } if (enemyDamage == 0) {
+                battleStatus(); // We show the stats
+            }
+            if (enemyDamage == 0) { // The monster's damage could not penetrate the defence of the hero
                 std::cout << enemy->getName() << " could not penetrate your defence!" << std::endl;
 
-                battleStatus();
-            } else {
-                if (chance < accuracyPercentage) {
+                battleStatus(); // We show the stats
+
+            } else { // In the case of the monsters, they can also miss because of the accuracy percentage that si calculated with the rand()
+                if (chance < accuracyPercentage) { // if the variable chance defined previously is less than the accuracy of the monster
                     int enemyDamageInt = static_cast<int>(enemyDamage);
-                    hero->setHp(hero->getHp() - enemyDamageInt);
+                    hero->setHp(hero->getHp() - enemyDamageInt); // We define the new hp of the hero
                     std::cout << enemy->getName() << " attacks! " << hero->getName() << std::endl;
                     std::cout << " Damage dealt: " << enemyDamage << std::endl;
                     std::cout << std::endl;
                     std::cout << "Curent battle status" << std::endl;
 
-                    battleStatus();
+                    battleStatus(); // We show the new stats
 
                 } else {
                     std::cout << enemy->getName() << " missed!" << std::endl;
@@ -83,15 +85,15 @@ void CombatSystem::turn() {
                 }
             }
         }
-        if(isBattleOver()) {
+        if(isBattleOver()) { // This condition only enters once the hero or the enemy is defeated
             std::cout << " The battle is over!" << std::endl;
-            if (enemy->getHp() == 0) {
-                int pointsRewarded = static_cast<int>(enemy->getReward()); // Preguntar si es necesario hacer un cast
+            if (enemy->getHp() == 0) { // The first case covers the situation where the enemy is defeated
+                int pointsRewarded = static_cast<int>(enemy->getReward()); //The number of points depends on the type of monster the hero defeats
                 std::cout << hero->getName() << " won the battle!" << std::endl;
                 std::cout << "Points granted by defeating " << enemy->getName() << " are: " << pointsRewarded << " points!" << std::endl;
-                hero->addUpgradePoints(pointsRewarded);
-                upgradeStats();
-            } else if (hero->getHp() == 0) {
+                hero->addUpgradePoints(pointsRewarded); //Method defined to add the upgrade points
+                upgradeStats(); // calls the method to update points
+            } else if (hero->getHp() == 0) { // Case where the enemy defeats the hero
                 std::cout << enemy->getName() << " won the battle!" << std::endl;
                 std::cout << "Game Over" << std::endl;
             }
@@ -101,13 +103,14 @@ void CombatSystem::turn() {
 }
 
 bool CombatSystem::isBattleOver() const {
-    return hero->getHp() <= 0 || enemy->getHp() <= 0;
+    return hero->getHp() <= 0 || enemy->getHp() <= 0; //This function returns "true" whether the hero or the enemy has 0 or less of hit points
 }
 
 
-void CombatSystem::upgradeStats() {
+void CombatSystem::upgradeStats() { // The function implements a menu in order to upgrade the stats of the hero
 
-    while (hero->getUpgradePoints() > 0) {
+    int option = 0;
+    while (option != 4) { // The while maintains the loop until the player enters "4"
 
         int points = hero->getUpgradePoints();
 
@@ -119,7 +122,6 @@ void CombatSystem::upgradeStats() {
         std::cout << "3- Upgrade attack" << std::endl;
         std::cout << "4- Exit" << std::endl;
 
-        int option;
         std::cin >> option;
 
         switch (option) {
