@@ -65,6 +65,8 @@ public:
     void setCurrentRoomMonsterDefeated();
 
     void setHero(const std::string& name);
+
+    int getCost(const std::string& fromId, const std::string& toId);
 };
 
 #endif

@@ -7,6 +7,7 @@ private:
     std::string currentRoomId;
     int upgradePoints; // Used in the upgrade system
     int stamina;
+    int maxStamina;
 public:
     Hero(std::string id, std::string name, int hp, int atk, int def) : currentRoomId(""),  Entity(id, name, hp, atk, def), upgradePoints(0) {}
     ~Hero();
@@ -27,8 +28,12 @@ public:
     void upgradeDef(int amount);
     void upgradeHp(int amount);
 
-    void setStamina(int stamina);
+    void setStamina(int value);
     int getStamina();
+    void setMaxStamina(int maxStamina);
+    int getMaxStamina();
+    void staminaConsumption(int staminaCost);
+    bool hasEnoughStamina( int staminaCost) const;
 };
 
 #endif

@@ -235,7 +235,24 @@ bool Dungeon::moveHero(const std::string& roomId) {
 		std::cout << "Where did you even read that Magic ID, try again!" << std::endl;
 		return false;
 	}
-	
+
+	int staminaCost = getCost(currentRoom.getId(), roomId);
+	if (staminaCost < 0) {
+		std::cout << "There is no magic path to the room " << roomId << std::endl;
+		return false;
+	}
+	if (!hero->hasEnoughStamina(staminaCost)) {
+		std::cout << hero->getName() << " has no enought stamina to move there" << std::endl;
+		std::cout << "Stamina needed: " << staminaCost << std::endl;
+		std::cout << "Current stamina: " << hero->getStamina() << std::endl;
+		return false;
+	}
+
+	hero->staminaConsumption(staminaCost);
+	std::cout << hero->getName() << " moved to: " << roomId << std::endl;
+
+	std::cout << "The remaining stamina is: " << hero->getStamina() << std::endl;
+
 	board.findVertexNode(currentRoom)->getData().getData().setWasVisited(true);
 	board.findVertexNode(currentRoom)->getData().getData().setHero(nullptr);
 	board.findVertexNode(tempRoom)->getData().getData().setHero(hero);
@@ -283,4 +300,25 @@ void Dungeon::setCurrentRoomMonsterDefeated() {
 
 void Dungeon::setHero(const std::string& name) {
 	hero = new Hero("H1", name, 100, 3, 10);
+}
+
+int Dungeon::getCost(const std::string& fromId, const std::string& toId) {
+	Room<Monster> fromRoom(fromId);
+
+	ListNode<Vertex<Room<Monster>>>* fromNode = board.findVertexNode(fromRoom);
+	if (!fromNode) {
+		return -1; // The vertex does not exist
+	}
+	adjList = fromNode->getData().getAdj();
+	ListNode<Edge<Room<Monster>>>* edgeNode = adjList.getHead();
+
+	while (edgeNode) {
+		Edge<Room<Monster>>& edge = edgeNode->getData();
+		Room<Monster>& destRoom = edge.getDest();
+
+		if (destRoom.getId() == toId) {
+			return edge.getWeight();
+		}
+		edgeNode = edgeNode->getNext();
+	}
 }

@@ -50,7 +50,7 @@ void LinkedList<T>::pushBack(const T &value) {
         while (current->getNext()) {
             current = current->getNext();
         }
-        current->setNext(newNode); // Loops trhough the whole list to insert node at the end.
+        current->setNext(newNode); // Loops through the whole list to insert node at the end.
     }
     ++n;
 }
@@ -59,7 +59,7 @@ void LinkedList<T>::pushBack(const T &value) {
 template<typename T>
 bool LinkedList<T>::insert(unsigned int index, const T &value) {
     if (index > n) return false;
-    if (index == 0) { // If there is no nodes, insert using pushBack
+    if (index == 0) { // If there are no nodes, insert using pushBack
         pushBack(value);
         return true;
     }
@@ -69,7 +69,7 @@ bool LinkedList<T>::insert(unsigned int index, const T &value) {
     }
     ListNode<T>* newNode = new ListNode<T>(value);
     newNode->setNext(current->getNext()); // newNode points to the next node
-    current->setNext(newNode); // current node now points to the newNode
+    current->setNext(newNode); // the current node now points to the newNode
     ++n; // add 1 to the size
     return true;
 }
@@ -81,7 +81,7 @@ void LinkedList<T>::clear() {
         ListNode<T>* current = head;
         while (current != nullptr) {
             head = current->getNext(); 
-            delete current; // deletes current and moves to the next one
+            delete current; // deletes "current" and moves to the next one
             current = head;
             n--;
         }
@@ -100,12 +100,12 @@ void LinkedList<T>::pushFront(const T& value) {
         head = newNode;
     } else {
         newNode->setNext(head); // new node points to current head
-        head = newNode; // new node is now the head
+        head = newNode; // the new node is now the head
     }
     ++n;
 }
 
-// Returns th value specified by the index
+// Returns the value specified by the index
 template <typename T>
 T LinkedList<T>::elementAt(unsigned int index) {
     ListNode<T>* current = head;
@@ -133,13 +133,13 @@ bool LinkedList<T>::remove(const T& value) {
         ListNode<T>* previous = head;
         while (current != nullptr) { // loop through all the nodes
             if (current->getData() == value) { 
-                previous->setNext(current->getNext()); // previous node now points to the next node
+                previous->setNext(current->getNext()); // the previous node now points to the next node
                 delete current; //deletes current
                 current = nullptr;
                 --n;
                 return true;
             }
-            previous = current; // if values not equal
+            previous = current; // if values are not equal
             current = current->getNext();
         }
         std::cout << "No element found to remove" << std::endl;
@@ -147,7 +147,7 @@ bool LinkedList<T>::remove(const T& value) {
     }
 }
 
-// Returns size of the linked list
+// Returns the size of the linked list
 template <typename T>
 unsigned int LinkedList<T>::size() const{
     return n;

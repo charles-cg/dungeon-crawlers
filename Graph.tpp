@@ -75,7 +75,7 @@ const ListNode<Vertex<T>>* Graph<T>::findVertexNode(const T& v) const {
     return nullptr;
 }
 
-
+// dijkstra algorithm's implementation was provided by professor Andrés Torres
 template <typename T>
 void Graph<T>::dijkstra(const T& startVertex) {
     Node<Vertex<T>>* current = vertices.getHead();
@@ -88,14 +88,14 @@ void Graph<T>::dijkstra(const T& startVertex) {
 
     Node<Vertex<T>>* startNode = findVertexNode(startVertex);
     if (!startNode) {
-        cout << "Vertice inicial no encontrado" << endl;
+        std::cout << "Initial vertex not found" << std::endl;
         return;
     }
 
-    startNode->data.setDistance(0);
+    startNode->getData().setDistance(0);
 
     PriorityQueue<Vertex<T>> pq;
-    pq.push(startNode->data);
+    pq.push(startNode->getData());
 
     while (!pq.empty()) {
         Vertex<T> topVertex = pq.top();
@@ -107,39 +107,40 @@ void Graph<T>::dijkstra(const T& startVertex) {
         Node<Vertex<T>>* uNode = findVertexNode(u);
         if (!uNode) continue;
 
-        if (currentDist > uNode->data.getDistance()) continue;
+        if (currentDist > uNode->getData().getDistance()) continue;
 
-        uNode->data.setVisited(true);
+        uNode->getData().setVisited(true);
 
-        Node<Edge<T>>* edgeNode = uNode->data.getAdj().getHead();
+        Node<Edge<T>>* edgeNode = uNode->getData().getAdj().getHead();
         while (edgeNode) {
-            T v = edgeNode->data.getDest();
-            int weight = edgeNode->data.getWeight();
+            T v = edgeNode->getData().getDest();
+            int staminaCost = edgeNode->getData().getWeight(); // In our case, the weight is expressed in stamina cost
 
             Node<Vertex<T>>* vNode = findVertexNode(v);
             if (vNode) {
-                if (uNode->data.getDistance() != std::numeric_limits<int>::max() &&
-                    uNode->data.getDistance() + weight < vNode->data.getDistance()) {
+                int distU = uNode->getData().getDistance();
+                if (distU != std::numeric_limits<int>::max() &&
+                    distU + staminaCost < vNode->getData().getDistance()) {
 
-                    vNode->data.setDistance(uNode->data.getDistance() + weight);
-                    vNode->data.setParent(u);
-                    pq.push(vNode->data);
+                    vNode->getData().setDistance(uNode->data.getDistance() + staminaCost);
+                    vNode->getData().setParent(u);
+                    pq.push(vNode->getData());
                 }
             }
-            edgeNode = edgeNode->next;
+            edgeNode = edgeNode->getNext();
         }
     }
 
-    cout << "Dijkstra desde " << startVertex << ":" << endl;
+    std::cout << "Dijkstra from " << startVertex << ":" << std::endl;
     current = vertices.getHead();
     while (current) {
-        cout << "Vertex: " << current->data.getData() << ", distancia: ";
+        std::cout << "Vertex: " << current->data.getData() << ", distance: ";
         if (current->data.getDistance() == std::numeric_limits<int>::max()) {
-            cout << "INF";
+            std::cout << "INF";
         } else {
-            cout << current->data.getDistance() << ", padre: " << current->data.getParent();
+            std::cout << current->data.getDistance() << ", father: " << current->data.getParent();
         }
-        cout << endl;
+        std::cout << std::endl;
         current = current->next;
     }
 }
