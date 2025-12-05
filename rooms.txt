@@ -1,6 +1,11 @@
 id,name,encounter chance,was visited,monster
-R1,start,1,0,M5
-R2,cockatrice nest,1,0,M3
-R3,banshees tomb,0.8,0,M2
-R4,temple,0.9,0,M1
-R5,dragons lair,1,0,M4
+R1,Entrance Hall,1,0,M1
+R2,Abandoned Armory,1,0,M2
+R3,Dark Corridor,0.9,0,M3
+R4,Prison Cells,1,0,M4
+R5,Ritual Chamber,0.85,0,M5
+R6,Ancient Library,1,0,M6
+R7,Treasure Vault,0.8,0,M7
+R8,Throne Room,1,0,M8
+R9,Necromancer Tower,0.9,0,M9
+R10,Dragon's Lair,1,0,M10

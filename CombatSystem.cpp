@@ -36,7 +36,7 @@ void CombatSystem::battleFlow() {
 
         std::cout << " The battle is over!" << std::endl;
 
-        if (enemy->getHp() == 0) { // The first case covers the situation where the enemy is defeated
+        if (enemy->getHp() <= 0) { // The first case covers the situation where the enemy is defeated
             int pointsRewarded = static_cast<int>(enemy->getReward()); //The number of points depends on the type of monster the hero defeats
             std::cout << hero->getName() << " won the battle!" << std::endl;
             std::cout << "Points granted by defeating " << enemy->getName() << " are: " << pointsRewarded << " points!" << std::endl;
@@ -59,7 +59,7 @@ bool CombatSystem::isBattleOver() const {
 void CombatSystem::upgradeStats() { // The function implements a menu in order to upgrade the stats of the hero
 
     int option = 0;
-    while (option != 4 && hero->getUpgradePoints() <= 0) { // The while maintains the loop until the player enters "4"to exit the menu
+    while (option != 4 && hero->getUpgradePoints() >= 0) { // The while maintains the loop until the player enters "4"to exit the menu
 
         int points = hero->getUpgradePoints(); //We assign the upgrade points of the hero to the variable points to use it in the system
 
@@ -76,7 +76,7 @@ void CombatSystem::upgradeStats() { // The function implements a menu in order t
         switch (option) {
             case 1:
                 if (points > 0) {
-                    hero->spendUpgradePointsHp(3);
+                    hero->spendUpgradePointsHp(10);
                     std::cout << "Congratulations, you have upgraded your hit points the new stats are: " << std::endl;
                     battleStatus();
                 } else {
@@ -86,7 +86,7 @@ void CombatSystem::upgradeStats() { // The function implements a menu in order t
                 break;
             case 2:
                 if (points > 0) {
-                    hero->spendUpgradePointsDef(2);
+                    hero->spendUpgradePointsDef(10);
                     std::cout << "Congratulations, you have upgraded your defence the new stats are: " << std::endl;
                     battleStatus();
                 } else {
@@ -96,7 +96,7 @@ void CombatSystem::upgradeStats() { // The function implements a menu in order t
                 break;
             case 3:
                 if (points > 0) {
-                    hero->spendUpgradePointsAtk(2);
+                    hero->spendUpgradePointsAtk(10);
                     std::cout << "Congratulations, you have upgraded your attack the new stats are: " << std::endl;
                     battleStatus();
                 } else {
@@ -134,7 +134,7 @@ void CombatSystem::heroTurn() {
     int heroDamageInt = static_cast<int>(heroDamage); //Here we retransform the hero damage into an int
     enemy->setHp(enemy->getHp() - heroDamageInt); // The monster "receives" the damage
 
-    if (enemy->getHp < 0) {
+    if (enemy->getHp() < 0) {
         enemy->setHp(0); // If the Hp results in a negative number, we set is as 0 for ti not to be weird
     }
 
