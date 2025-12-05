@@ -66,7 +66,6 @@ bool GameController::run() {
     std::cout << "You enter the dungeon, ready to explore and slay the dragon!!!" << std::endl;
 
     int monstersDefeated = 0;
-    const int TOTAL_MONSTERS = 10;
     Hero* hero = dungeon.getHero();
 
     if (dungeon.handleEncounter()) {
@@ -75,13 +74,13 @@ bool GameController::run() {
         // If hero survived, increment monsters defeated
         if (hero->getHp() > 0) {
             monstersDefeated++;
-            std::cout << "Monsters defeated: " << monstersDefeated << "/" << TOTAL_MONSTERS << std::endl;
+            std::cout << "Monsters defeated: " << monstersDefeated << std::endl;
         }
     } else {
             std::cout << "\nYou explore the room carefully... it is completely empty." << std::endl;
     }
 
-    while (hero->getHp() > 0 && monstersDefeated < TOTAL_MONSTERS) {
+    while (hero->getHp() > 0 && !dungeon.isRedDragonDefeated()) {
         // Handle movement
         std::cout << "\n--- Current Location ---" << std::endl;
         std::cout << "HP: " << hero->getHp() << "/" << hero->getMaxHp() 
@@ -98,7 +97,7 @@ bool GameController::run() {
             // If hero survived, increment monsters defeated
             if (hero->getHp() > 0) {
                 monstersDefeated++;
-                std::cout << "Monsters defeated: " << monstersDefeated << "/" << TOTAL_MONSTERS << std::endl;
+                std::cout << "Monsters defeated: " << monstersDefeated << std::endl;
             }
         } else {
             std::cout << "\nYou explore the room carefully... it is completely empty." << std::endl;
@@ -111,7 +110,7 @@ bool GameController::run() {
         std::cout << "         GAME OVER" << std::endl;
         std::cout << "*************************************" << std::endl;
         std::cout << "You have been defeated..." << std::endl;
-        std::cout << "Monsters defeated: " << monstersDefeated << "/" << TOTAL_MONSTERS << std::endl;
+        std::cout << "Monsters defeated: " << monstersDefeated << std::endl;
         return false;
     } else {
         std::cout << "\n*********************************" << std::endl;

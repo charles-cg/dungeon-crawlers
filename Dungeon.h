@@ -67,6 +67,8 @@ public:
     void setHero(const std::string& name);
 
     int getCost(const std::string& fromId, const std::string& toId);
+
+    bool isRedDragonDefeated();
 };
 
 #endif

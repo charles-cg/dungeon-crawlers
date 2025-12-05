@@ -328,3 +328,8 @@ int Dungeon::getCost(const std::string& fromId, const std::string& toId) {
 	}
 	return -1;
 }
+
+bool Dungeon::isRedDragonDefeated() {
+	Room<Monster> dragonRoom("R10");
+	return board.findVertexNode(dragonRoom)->getData().getData().getWasMonsterDefeated();
+}

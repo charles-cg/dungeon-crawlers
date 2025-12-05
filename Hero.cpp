@@ -28,7 +28,7 @@ void Hero::spendUpgradePointsAtk(int points) {
         std::cout << "Sorry, you do not have enough points" << std::endl;
         return;
     }
-    upgradeAtk(1);
+    upgradeAtk(10);
     upgradePoints -= points;
 }
 
@@ -37,7 +37,7 @@ void Hero::spendUpgradePointsDef(int points) {
         std::cout << "Sorry, you do not have enough points" << std::endl;
         return;
     }
-    upgradeDef(1);
+    upgradeDef(10);
     upgradePoints -= points;
 }
 
@@ -46,7 +46,7 @@ void Hero::spendUpgradePointsHp(int points) {
         std::cout << "Sorry, you do not have enough points" << std::endl;
         return;
     }
-    upgradeHp(1);
+    upgradeHp(10);
     upgradePoints -= points;
 }
 
