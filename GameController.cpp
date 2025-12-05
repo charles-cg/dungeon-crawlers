@@ -20,7 +20,7 @@ void GameController::handleCombat() {
     std::cout << "Prepare thyself, a wild " << monster->getName() << " has appeared!" << std::endl;
     
     CombatSystem combat(hero, monster);
-    combat.turn();
+    combat.battleFlow();
     
     if (hero->getHp() <= 0) {
         std::cout << "\nYour journey ends here..." << std::endl;
@@ -123,3 +123,4 @@ bool GameController::run() {
         return true;
     }
 }
+

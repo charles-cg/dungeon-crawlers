@@ -228,9 +228,12 @@ void Dungeon::showNeghboringRooms() const {
 }
 
 bool Dungeon::moveHero(const std::string& roomId) {
+
 	Room<Monster> tempRoom(roomId);
 	Room<Monster> currentRoom(hero->getCurrentRoomId());
+
 	Edge<Room<Monster>> searchEdge(tempRoom, 0);
+
 	if (!board.findVertexNode(currentRoom)->getData().getAdj().search(searchEdge)) {
 		std::cout << "Where did you even read that Magic ID, try again!" << std::endl;
 		return false;
