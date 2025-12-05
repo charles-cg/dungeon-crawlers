@@ -69,6 +69,10 @@ public:
     int getCost(const std::string& fromId, const std::string& toId);
 
     bool isRedDragonDefeated();
+
+    Graph<Room<Monster>>& getBoard();
+
+    const Graph<Room<Monster>>& getBoard() const;
 };
 
 #endif

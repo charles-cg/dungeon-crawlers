@@ -6,6 +6,7 @@
 class GameController {
 private:
     Dungeon dungeon;
+    std::string secretPassword = "Hash";
 public:
     GameController() {
         dungeon.loadRoomData();
@@ -17,6 +18,8 @@ public:
     void handleCombat();
 
     bool run();
+
+    void showSecretPath();
 };
 
 #endif

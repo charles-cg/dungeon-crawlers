@@ -333,3 +333,11 @@ bool Dungeon::isRedDragonDefeated() {
 	Room<Monster> dragonRoom("R10");
 	return board.findVertexNode(dragonRoom)->getData().getData().getWasMonsterDefeated();
 }
+
+Graph<Room<Monster>>& Dungeon::getBoard() {
+	return board;
+}
+
+const Graph<Room<Monster>>& Dungeon::getBoard() const {
+	return board;
+}

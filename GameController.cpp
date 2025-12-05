@@ -79,7 +79,7 @@ bool GameController::run() {
     } else {
             std::cout << "\nYou explore the room carefully... it is completely empty." << std::endl;
     }
-
+    int option = 0;
     while (hero->getHp() > 0 && !dungeon.isRedDragonDefeated()) {
         // Handle movement
         std::cout << "\n--- Current Location ---" << std::endl;
@@ -87,23 +87,46 @@ bool GameController::run() {
                   << " | ATK: " << hero->getAtk() 
                   << " | DEF: " << hero->getDef() 
                   << " | Upgrade Points: " << hero->getUpgradePoints() << std::endl;
-        
-        handleHeroMovement();
-        
-        // Check for encounter after movement
-        if (dungeon.handleEncounter()) {
-            handleCombat();
-            
-            // If hero survived, increment monsters defeated
-            if (hero->getHp() > 0) {
-                monstersDefeated++;
-                std::cout << "Monsters defeated: " << monstersDefeated << std::endl;
-            }
-        } else {
-            std::cout << "\nYou explore the room carefully... it is completely empty." << std::endl;
+
+        std::cout << "What will you do now?" << std::endl;
+        std::cout << "1) Move to another room" << std::endl;
+        std::cout << "2) Try you knowledge by using the secret password" << std::endl;
+        std::cout << "3) Wait here (I wouldn't know why, but ok man)" << std::endl;
+        std::cout << "4) Surrender and leave the doungeon (I also wouldn't recomend it, but sure mate)" << std::endl;
+
+        std::cin >> option;
+
+        switch (option) {
+            case 1:
+                handleHeroMovement();
+
+                // Check for encounter after movement
+                if (dungeon.handleEncounter()) {
+                    handleCombat();
+
+                    // If hero survived, increment monsters defeated
+                    if (hero->getHp() > 0) {
+                        monstersDefeated++;
+                        std::cout << "Monsters defeated: " << monstersDefeated << std::endl;
+                    }
+                } else {
+                    std::cout << "\nYou explore the room carefully... it is completely empty." << std::endl;
+                }
+                break;
+            case 2:
+                showSecretPath();
+                break;
+            case 3: std::cout << "I still don't know why you chose to rest, but I admit it's necessary sometimes" << std::endl;
+                break;
+            case 4:
+                std::cout << "So, you decide to surrender, I thought you could tackle the task" << std::endl;
+                return false;
+            default:
+                std::cout << "Sorry man, that's not a valid option" << std::endl;
+                break;
         }
     }
-    
+
     // Final check after loop exits
     if (hero->getHp() <= 0) {
         std::cout << "\n***********************************" << std::endl;
@@ -121,5 +144,28 @@ bool GameController::run() {
         std::cout << "Your name will be remembered in songs for generations!" << std::endl;
         return true;
     }
+}
+
+void GameController::showSecretPath() {
+    std::string password;
+    std::cout << "Enter the secret password to reveal the secret path" << std::endl;
+    std::cin >> password;
+
+    if (password != secretPassword) {
+        std::cout << "That's not the secret password, good luck finding the path!" << std::endl;
+        return;
+    } else {
+        std::cout << "Correct! Now, the magic shall show you the most optimal path to yout destiny" << std::endl;
+    }
+
+    Hero* hero = dungeon.getHero();
+    if (!hero) {
+        std::cout << "There's no hero in the dungeon" << std::endl;
+        return;
+    }
+    std::string currentRoomId = hero->getCurrentRoomId();
+    Room<Monster> currentRoom(hero->getCurrentRoomId());
+
+    dungeon.getBoard().dijkstra(currentRoom);
 }
 
