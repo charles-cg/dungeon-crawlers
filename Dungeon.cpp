@@ -300,6 +300,8 @@ void Dungeon::setCurrentRoomMonsterDefeated() {
 
 void Dungeon::setHero(const std::string& name) {
 	hero = new Hero("H1", name, 100, 3, 10);
+	hero->setMaxStamina(100);
+	hero->setStamina(100);
 }
 
 int Dungeon::getCost(const std::string& fromId, const std::string& toId) {
@@ -309,16 +311,17 @@ int Dungeon::getCost(const std::string& fromId, const std::string& toId) {
 	if (!fromNode) {
 		return -1; // The vertex does not exist
 	}
-	adjList = fromNode->getData().getAdj();
+	LinkedList<Edge<Room<Monster>>> adjList = fromNode->getData().getAdj();
 	ListNode<Edge<Room<Monster>>>* edgeNode = adjList.getHead();
 
 	while (edgeNode) {
 		Edge<Room<Monster>>& edge = edgeNode->getData();
-		Room<Monster>& destRoom = edge.getDest();
+		Room<Monster> destRoom = edge.getDestination();
 
 		if (destRoom.getId() == toId) {
 			return edge.getWeight();
 		}
 		edgeNode = edgeNode->getNext();
 	}
+	return -1;
 }
