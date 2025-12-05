@@ -1,6 +1,6 @@
 id,name,hit points,attack,defense,accuracy,reward
-M1,Angel,136,8,17,0.80,2000
-M2,Banshee,58,4,12,0.9,800
-M3,Cockatrice,6,20,0,0.2,200
-M4,Red Dragon,546,25,22,0.75,8800
-M5,Goblin,7,2,1,0.6,50
+M1,Angel,106,8,17,0.80,2000
+M2,Banshee,110,6,12,0.9,800
+M3,Cockatrice,12,20,0,0.2,200
+M4,Red Dragon,320,25,22,0.75,8800
+M5,Goblin,7,3,1,0.6,50
