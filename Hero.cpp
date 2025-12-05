@@ -61,13 +61,42 @@ void Hero::upgradeDef(int amount) {
 void Hero::upgradeHp(int amount) {
     maxHp += amount;
     hp += amount;
-    if (hp > maxHp) hp = maxHp;
+    if (hp > maxHp) {
+        hp = maxHp;
+    }
 }
 
-void Hero::setStamina(int stamina) {
-    this->stamina = stamina;
+void Hero::setStamina(int value) {
+    stamina = value;
+    if (stamina > maxStamina) {
+        stamina = maxStamina;
+    }
+    if (stamina < 0) {
+        stamina = 0;
+    }
+
 }
 
 int Hero::getStamina() {
     return stamina;
 }
+
+int Hero::getMaxStamina() {
+    return maxStamina;
+}
+
+void Hero::setMaxStamina(int maxStamina) {
+    this->maxStamina = maxStamina;
+}
+
+void Hero::staminaConsumption(int staminaCost) {
+    stamina -= staminaCost;
+    if (stamina < 0) {
+        stamina = 0;
+    }
+}
+
+bool Hero::hasEnoughStamina(int staminaCost) const {
+    return stamina >= staminaCost;
+}
+
