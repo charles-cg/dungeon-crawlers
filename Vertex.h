@@ -10,11 +10,13 @@ private:
     T data;
 
     bool visited;
+    int distance;
+    T parent;
     
     LinkedList<Edge<T>> adj;
 
 public:
-    Vertex(const T& v): data(v) {
+    Vertex(const T& v): data(v), distance(0), parent(T()) {
         visited=false;
     }
 
@@ -25,6 +27,10 @@ public:
 
     bool operator==(const Vertex<T>& v) {
         return data==v.getData();
+    }
+
+    bool operator>(const Vertex<T>& v) const {
+        return distance > v.distance;
     }
 
     T getData() const;
@@ -40,6 +46,11 @@ public:
     bool hasAdjacent(const Vertex<T>& vertex);
 
     const LinkedList<Edge<T>>& getAdj() const;
+
+    int getDistance() const;
+    void setDistance(int dist);
+    T getParent() const;
+    void setParent(const T& p);
 };
 
 #include "Vertex.tpp"

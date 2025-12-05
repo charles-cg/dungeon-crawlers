@@ -70,6 +70,45 @@ bool GameController::run() {
     int monstersDefeated = 0;
     Hero* hero = dungeon.getHero();
 
+    int option = 0;
+    std::cout << "What will you do now?" << std::endl;
+    std::cout << "1) Move to another room" << std::endl;
+    std::cout << "2) Try you knowledge by using the secret password" << std::endl;
+    std::cout << "3) Wait here (I wouldn't know why, but ok man)" << std::endl;
+    std::cout << "4) Surrender and leave the doungeon (I also wouldn't recomend it, but sure mate)" << std::endl;
+
+    std::cin >> option;
+
+    switch (option) {
+        case 1:
+            handleHeroMovement();
+
+            // Check for encounter after movement
+            if (dungeon.handleEncounter()) {
+                handleCombat();
+
+                // If hero survived, increment monsters defeated
+                if (hero->getHp() > 0) {
+                    monstersDefeated++;
+                    std::cout << "Monsters defeated: " << monstersDefeated << std::endl;
+                }
+            } else {
+                std::cout << "\nYou explore the room carefully... it is completely empty." << std::endl;
+            }
+            break;
+        case 2:
+            showSecretPath();
+            break;
+        case 3: std::cout << "I still don't know why you chose to rest, but I admit it's necessary sometimes" << std::endl;
+            break;
+        case 4:
+            std::cout << "So, you decide to surrender, I thought you could tackle the task" << std::endl;
+            return false;
+        default:
+            std::cout << "Sorry man, that's not a valid option" << std::endl;
+            break;
+    }
+
     if (dungeon.handleEncounter()) {
         handleCombat();
         
@@ -81,7 +120,6 @@ bool GameController::run() {
     } else {
             std::cout << "\nYou explore the room carefully... it is completely empty." << std::endl;
     }
-    int option = 0;
     while (hero->getHp() > 0 && !dungeon.isRedDragonDefeated()) {
         // Handle movement
         std::cout << "\n--- Current Location ---" << std::endl;
@@ -90,43 +128,6 @@ bool GameController::run() {
                   << " | DEF: " << hero->getDef() 
                   << " | Upgrade Points: " << hero->getUpgradePoints() << std::endl;
 
-        std::cout << "What will you do now?" << std::endl;
-        std::cout << "1) Move to another room" << std::endl;
-        std::cout << "2) Try you knowledge by using the secret password" << std::endl;
-        std::cout << "3) Wait here (I wouldn't know why, but ok man)" << std::endl;
-        std::cout << "4) Surrender and leave the doungeon (I also wouldn't recomend it, but sure mate)" << std::endl;
-
-        std::cin >> option;
-
-        switch (option) {
-            case 1:
-                handleHeroMovement();
-
-                // Check for encounter after movement
-                if (dungeon.handleEncounter()) {
-                    handleCombat();
-
-                    // If hero survived, increment monsters defeated
-                    if (hero->getHp() > 0) {
-                        monstersDefeated++;
-                        std::cout << "Monsters defeated: " << monstersDefeated << std::endl;
-                    }
-                } else {
-                    std::cout << "\nYou explore the room carefully... it is completely empty." << std::endl;
-                }
-                break;
-            case 2:
-                showSecretPath();
-                break;
-            case 3: std::cout << "I still don't know why you chose to rest, but I admit it's necessary sometimes" << std::endl;
-                break;
-            case 4:
-                std::cout << "So, you decide to surrender, I thought you could tackle the task" << std::endl;
-                return false;
-            default:
-                std::cout << "Sorry man, that's not a valid option" << std::endl;
-                break;
-        }
     }
 
     // Final check after loop exits
