@@ -22,6 +22,8 @@ public:
     ListNode<Vertex<T>>* findVertexNode(const T& v);
 
     const ListNode<Vertex<T>>* findVertexNode(const T& v) const;
+
+    void dijkstra(const T& startVertex);
 };
 
 #include "Graph.tpp"

@@ -18,21 +18,36 @@ void CombatSystem::battleStatus() const {
 
 void CombatSystem::battleFlow() {
 
-    heroTurn();
+    while (!isBattleOver()) {
+        battleStatus();
 
+        heroTurn();
+        if (isBattleOver()) {
+            break; // Checar al rato como corregir esto
+        }
+
+        enemyTurn();
+        if (isBattleOver()) {
+            break; //Checar al rato como corregir esto
+        }
+    }
 
     if(isBattleOver()) { // This condition only enters once the hero or the enemy is defeated
+
         std::cout << " The battle is over!" << std::endl;
+
         if (enemy->getHp() == 0) { // The first case covers the situation where the enemy is defeated
             int pointsRewarded = static_cast<int>(enemy->getReward()); //The number of points depends on the type of monster the hero defeats
             std::cout << hero->getName() << " won the battle!" << std::endl;
             std::cout << "Points granted by defeating " << enemy->getName() << " are: " << pointsRewarded << " points!" << std::endl;
             hero->addUpgradePoints(pointsRewarded); //Method defined to add the upgrade points
             upgradeStats(); // calls the method to update points
+
         } else if (hero->getHp() == 0) { // Case where the enemy defeats the hero
             std::cout << enemy->getName() << " won the battle!" << std::endl;
             std::cout << "Game Over" << std::endl;
         }
+        //Final battle status
         battleStatus();
     }
 }
@@ -179,6 +194,3 @@ void CombatSystem::enemyTurn() {
         battleStatus();
     }
 }
-
-
-
