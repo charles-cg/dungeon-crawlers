@@ -144,3 +144,36 @@ void Graph<T>::dijkstra(const T& startVertex) {
         current = current->next;
     }
 }
+
+template<typename T>
+LinkedList<T> Graph<T>::getShortestPath(const T &startVertex, const T &endVertex) {
+    LinkedList<T> path;
+
+    ListNode<Vertex<T>>* endNode = findVertexNode(endVertex);
+
+    if (!endNode) {
+        std::cout << "Last vertex not found" << std::endl;
+        return path;
+    }
+
+    if (endNode->geData().getDistance() == std::numeric_limits<int>::max()) {
+        std::cout << "No existing path" << std::endl;
+        return path;
+    }
+
+    T current = endVertex;
+
+    while (true) {
+        path.pushFront(current);
+
+        if (current == startVertex) {
+            break;
+        }
+        ListNode<Vertex<T>>* currentNode = findVertexNode(current->data.getData());
+        if (!currentNode) {
+            break;
+        }
+        current = currentNode->getData().getParent();
+    }
+    return path;
+}

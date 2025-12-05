@@ -1,5 +1,7 @@
 #include "GameController.h"
 #include "CombatSystem.h"
+#include "LinkedList.h"
+
 
 void GameController::handleHeroMovement() {
     dungeon.showNeghboringRooms();
@@ -159,13 +161,36 @@ void GameController::showSecretPath() {
     }
 
     Hero* hero = dungeon.getHero();
+
     if (!hero) {
         std::cout << "There's no hero in the dungeon" << std::endl;
         return;
     }
-    std::string currentRoomId = hero->getCurrentRoomId();
-    Room<Monster> currentRoom(hero->getCurrentRoomId());
 
-    dungeon.getBoard().dijkstra(currentRoom);
+    std::string currentRoomId = hero->getCurrentRoomId();
+
+    Room<Monster> startRoom(hero->getCurrentRoomId()); // Room where the hero is
+    Room<Monster> endRoom("R9"); // Objective Room
+
+    Graph<Room<Monster>>& board = dungeon.getBoard();
+
+    board.dijkstra(startRoom);
+
+    LinkedList<Room<Monster>> path = board.getShortestPath(startRoom, endRoom);
+
+    if (path.empty()) {
+        std::cout << "The magic did not reveal anything" << std::endl;
+        return;
+    }
+    std::cout << "The path is:" << std::endl;
+    ListNode<Room<Monster>>* currentNode = path.getHead();
+    while (currentNode) {
+        std::cout << currentNode->getData().getId();
+        if (currentNode->getNext() != nullptr) {
+            std::cout << "->";
+        }
+        currentNode = currentNode->getNext();
+    }
+    std::cout << std::endl;
 }
 

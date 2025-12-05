@@ -24,6 +24,8 @@ public:
     const ListNode<Vertex<T>>* findVertexNode(const T& v) const;
 
     void dijkstra(const T& startVertex);
+
+    LinkedList<T> getShortestPath(const T& startVertex, const T& endVertex);
 };
 
 #include "Graph.tpp"
