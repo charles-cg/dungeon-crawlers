@@ -38,7 +38,6 @@ private:
 public:
     Dungeon() : totalRooms(0) {
         monsterCodex.loadMonsterData();
-        hero = new Hero("H1", "Yu", 100, 3, 10);
     }
 
     ~Dungeon();
@@ -60,6 +59,12 @@ public:
     bool shouldTriggerEncounter();
 
     bool handleEncounter();
+
+    Hero* getHero();
+
+    void setCurrentRoomMonsterDefeated();
+
+    void setHero(const std::string& name);
 };
 
 #endif
