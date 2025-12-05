@@ -10,9 +10,13 @@ public:
     GameController() {
         dungeon.loadRoomData();
         dungeon.loadPathData();
-        dungeon.setStartingRoom();
     }
+
     void handleHeroMovement();
+
+    void handleCombat();
+
+    bool run();
 };
 
 #endif

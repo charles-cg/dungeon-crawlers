@@ -11,6 +11,7 @@ Room<T>::Room() {
     encounterChance = 0;
     wasVisited = false;
     hero = nullptr;
+    wasMonsterDefeated = false;
 }
 
 template <typename T>
@@ -84,6 +85,11 @@ bool Room<T>::getWasMonsterDefeated() {
 template <typename T>
 T Room<T>::getCreature() {
     return creature;
+}
+
+template <typename T>
+T* Room<T>::getCreaturePtr() {
+    return &creature;
 }
 
 template <typename T>

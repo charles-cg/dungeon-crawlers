@@ -17,7 +17,7 @@ private:
     T creature;
     Hero* hero;
 public:
-    Room() : wasMonsterDefeated(false) {};
+    Room();
     Room(const std::string& id) : id(id) {}
     ~Room();
 
@@ -35,6 +35,7 @@ public:
     bool getWasVisited();
     bool getWasMonsterDefeated();
     T getCreature();
+    T* getCreaturePtr();
     Hero* getHero();
 
     bool operator<(const Room<T>& otherRoom) const {

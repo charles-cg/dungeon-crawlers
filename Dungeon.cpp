@@ -246,7 +246,7 @@ bool Dungeon::moveHero(const std::string& roomId) {
 Monster* Dungeon::getCurrentMonster() {
 	Room<Monster> currentRoom(hero->getCurrentRoomId());
 
-	return &board.findVertexNode(currentRoom)->getData().getData().getCreature();
+	return board.findVertexNode(currentRoom)->getData().getData().getCreaturePtr();
 }
 
 bool Dungeon::shouldTriggerEncounter() {
@@ -270,4 +270,17 @@ bool Dungeon::handleEncounter() {
 	}
 
 	return false;
+}
+
+Hero* Dungeon::getHero() {
+	return hero;
+}
+
+void Dungeon::setCurrentRoomMonsterDefeated() {
+	Room<Monster> currentRoom(hero->getCurrentRoomId());
+	board.findVertexNode(currentRoom)->getData().getData().setWasMonsterDefeated(true);
+}
+
+void Dungeon::setHero(const std::string& name) {
+	hero = new Hero("H1", name, 100, 3, 10);
 }
