@@ -22,14 +22,14 @@ template <typename T>
 T PriorityQueue<T>::top() const {
     if (list.empty()) throw std::runtime_error("PriorityQueue is empty");
 
-    Node<T>* current = list.getHead();
-    T maxVal = current->data;
+    const ListNode<T>* current = list.getHead();
+    T maxVal = current->getData();
 
     while (current) {
-        if (current->data > maxVal) {
-            maxVal = current->data;
+        if (current->getData() > maxVal) {
+            maxVal = current->getData();
         }
-        current = current->next;
+        current = current->getNext();
     }
     return maxVal;
 }

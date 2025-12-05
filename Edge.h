@@ -11,9 +11,9 @@ private:
 public:
     Edge(const T& dest, int w) : destination(dest), weight(w) {}
 
-    T getDestination();
+    T getDestination() const;
 
-    int getWeight();
+    int getWeight() const;
 
     bool operator==(const Edge<T>& edge) const {
         return destination == edge.destination;

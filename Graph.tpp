@@ -78,15 +78,15 @@ const ListNode<Vertex<T>>* Graph<T>::findVertexNode(const T& v) const {
 // dijkstra algorithm's implementation was provided by professor Andrés Torres
 template <typename T>
 void Graph<T>::dijkstra(const T& startVertex) {
-    Node<Vertex<T>>* current = vertices.getHead();
+    ListNode<Vertex<T>>* current = vertices.getHead();
     while (current) {
-        current->data.setDistance(std::numeric_limits<int>::max());
-        current->data.setVisited(false);
-        current->data.setParent(T()); // Reset parent to default
-        current = current->next;
+        current->getData().setDistance(std::numeric_limits<int>::max());
+        current->getData().setVisited(false);
+        current->getData().setParent(T()); // Reset parent to default
+        current = current->getNext();
     }
 
-    Node<Vertex<T>>* startNode = findVertexNode(startVertex);
+    ListNode<Vertex<T>>* startNode = findVertexNode(startVertex);
     if (!startNode) {
         std::cout << "Initial vertex not found" << std::endl;
         return;
@@ -104,25 +104,25 @@ void Graph<T>::dijkstra(const T& startVertex) {
         int currentDist = topVertex.getDistance();
         T u = topVertex.getData();
 
-        Node<Vertex<T>>* uNode = findVertexNode(u);
+        ListNode<Vertex<T>>* uNode = findVertexNode(u);
         if (!uNode) continue;
 
         if (currentDist > uNode->getData().getDistance()) continue;
 
         uNode->getData().setVisited(true);
 
-        Node<Edge<T>>* edgeNode = uNode->getData().getAdj().getHead();
+        const ListNode<Edge<T>>* edgeNode = uNode->getData().getAdj().getHead();
         while (edgeNode) {
-            T v = edgeNode->getData().getDest();
+            T v = edgeNode->getData().getDestination();
             int staminaCost = edgeNode->getData().getWeight(); // In our case, the weight is expressed in stamina cost
 
-            Node<Vertex<T>>* vNode = findVertexNode(v);
+            ListNode<Vertex<T>>* vNode = findVertexNode(v);
             if (vNode) {
                 int distU = uNode->getData().getDistance();
                 if (distU != std::numeric_limits<int>::max() &&
                     distU + staminaCost < vNode->getData().getDistance()) {
 
-                    vNode->getData().setDistance(uNode->data.getDistance() + staminaCost);
+                    vNode->getData().setDistance(uNode->getData().getDistance() + staminaCost);
                     vNode->getData().setParent(u);
                     pq.push(vNode->getData());
                 }
@@ -134,14 +134,14 @@ void Graph<T>::dijkstra(const T& startVertex) {
     std::cout << "Dijkstra from " << startVertex << ":" << std::endl;
     current = vertices.getHead();
     while (current) {
-        std::cout << "Vertex: " << current->data.getData() << ", distance: ";
-        if (current->data.getDistance() == std::numeric_limits<int>::max()) {
+        std::cout << "Vertex: " << current->getData().getData() << ", distance: ";
+        if (current->getData().getDistance() == std::numeric_limits<int>::max()) {
             std::cout << "INF";
         } else {
-            std::cout << current->data.getDistance() << ", father: " << current->data.getParent();
+            std::cout << current->getData().getDistance() << ", father: " << current->getData().getParent();
         }
         std::cout << std::endl;
-        current = current->next;
+        current = current->getNext();
     }
 }
 
@@ -156,7 +156,7 @@ LinkedList<T> Graph<T>::getShortestPath(const T &startVertex, const T &endVertex
         return path;
     }
 
-    if (endNode->geData().getDistance() == std::numeric_limits<int>::max()) {
+    if (endNode->getData().getDistance() == std::numeric_limits<int>::max()) {
         std::cout << "No existing path" << std::endl;
         return path;
     }
@@ -169,7 +169,7 @@ LinkedList<T> Graph<T>::getShortestPath(const T &startVertex, const T &endVertex
         if (current == startVertex) {
             break;
         }
-        ListNode<Vertex<T>>* currentNode = findVertexNode(current->data.getData());
+        ListNode<Vertex<T>>* currentNode = findVertexNode(current);
         if (!currentNode) {
             break;
         }

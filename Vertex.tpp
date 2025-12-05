@@ -37,3 +37,23 @@ template <typename T>
 T& Vertex<T>::getData() {
     return data;
 }
+
+template <typename T>
+int Vertex<T>::getDistance() const {
+    return distance;
+}
+
+template <typename T>
+void Vertex<T>::setDistance(int dist) {
+    this->distance = dist;
+}
+
+template <typename T>
+T Vertex<T>::getParent() const {
+    return parent;
+}
+
+template <typename T>
+void Vertex<T>::setParent(const T& p) {
+    this->parent = p;
+}
