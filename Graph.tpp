@@ -80,9 +80,9 @@ template <typename T>
 void Graph<T>::dijkstra(const T& startVertex) {
     Node<Vertex<T>>* current = vertices.getHead();
     while (current) {
-        current->data.setDistance(std::numeric_limits<int>::max());
-        current->data.setVisited(false);
-        current->data.setParent(T()); // Reset parent to default
+        current->getdata.setDistance(std::numeric_limits<int>::max());
+        current->getdata.setVisited(false);
+        current->getdata.setParent(T()); // Reset parent to default
         current = current->next;
     }
 
