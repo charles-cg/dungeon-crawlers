@@ -7,6 +7,7 @@ Entity::Entity() {
     hp = 0;
     atk = 0;
     def = 0;
+    maxHp = 0;
 }
 
 Entity::~Entity() {
