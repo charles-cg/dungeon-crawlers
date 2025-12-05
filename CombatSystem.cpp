@@ -110,9 +110,9 @@ bool CombatSystem::isBattleOver() const {
 void CombatSystem::upgradeStats() { // The function implements a menu in order to upgrade the stats of the hero
 
     int option = 0;
-    while (option != 4) { // The while maintains the loop until the player enters "4"
+    while (option != 4 && hero->getUpgradePoints() <= 0) { // The while maintains the loop until the player enters "4"to exit the menu
 
-        int points = hero->getUpgradePoints();
+        int points = hero->getUpgradePoints(); //We assign the upgrade points of the hero to the variable points to use it in the system
 
         std::cout << "UPGRADE SYSTEM" << std::endl;
         std::cout << "Points left: " << points << std::endl;
@@ -122,23 +122,38 @@ void CombatSystem::upgradeStats() { // The function implements a menu in order t
         std::cout << "3- Upgrade attack" << std::endl;
         std::cout << "4- Exit" << std::endl;
 
-        std::cin >> option;
+        std::cin >> option; // Here the player can change the option and exit the loop
 
         switch (option) {
             case 1:
-                hero->spendUpgradePointsHp(1);
-                std::cout << "Congratulations, you have upgraded your hit points the new stats are: " << std::endl;
-                battleStatus();
+                if (points > 0) {
+                    hero->spendUpgradePointsHp(3);
+                    std::cout << "Congratulations, you have upgraded your hit points the new stats are: " << std::endl;
+                    battleStatus();
+                } else {
+                    std::cout << "You have no points left" << std::endl;
+                }
+                std::cout << std::endl;
                 break;
             case 2:
-                hero->spendUpgradePointsDef(1);
-                std::cout << "Congratulations, you have upgraded your defence the new stats are: " << std::endl;
-                battleStatus();
+                if (points > 0) {
+                    hero->spendUpgradePointsDef(2);
+                    std::cout << "Congratulations, you have upgraded your defence the new stats are: " << std::endl;
+                    battleStatus();
+                } else {
+                    std::cout << "You have no points left" << std::endl;
+                }
+                std::cout << std::endl;
                 break;
             case 3:
-                hero->spendUpgradePointsAtk(1);
-                std::cout << "Congratulations, you have upgraded your attack the new stats are: " << std::endl;
-                battleStatus();
+                if (points > 0) {
+                    hero->spendUpgradePointsAtk(2);
+                    std::cout << "Congratulations, you have upgraded your attack the new stats are: " << std::endl;
+                    battleStatus();
+                } else {
+                    std::cout << "You have no points left" << std::endl;
+                }
+                std::cout << std::endl;
                 break;
             case 4:
                 std::cout << "Goodbye!" << std::endl;
@@ -146,7 +161,6 @@ void CombatSystem::upgradeStats() { // The function implements a menu in order t
             default:
                 std::cout << "Invalid option" << std::endl;
         }
-
     }
     std::cout << hero->getName() << " has no more points left to spend" << std::endl;
 }
